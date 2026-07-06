@@ -52,6 +52,8 @@
     /* ===== BILINGUAL VISIBILITY ===== */
     html[data-lang="en"] [lang="zh"] { display: none; }
     html[data-lang="zh"] [lang="en"] { display: none; }
+    html[data-lang="en"] [data-show="zh"] { display: none; }
+    html[data-lang="zh"] [data-show="en"] { display: none; }
 
     .container {
       max-width: var(--max);
@@ -917,8 +919,8 @@
       </ul>
       <div class="nav-right">
         <button class="lang-btn" id="lang-btn" aria-label="Switch to English">
-          <span lang="zh">EN</span>
-          <span lang="en">中</span>
+          <span data-show="zh" aria-hidden="true">EN</span>
+          <span data-show="en" aria-hidden="true">中</span>
         </button>
         <a href="#contact" class="nav-cta">
           <span lang="zh">聯絡我 ↗</span>
