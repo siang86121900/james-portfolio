@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW" data-lang="zh">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="James Zhang — Product Manager specializing in AdTech, Data Platforms, and AI-powered products. Based in Taiwan.">
+  <meta name="description" content="James Zhang — 產品經理，專注於 AdTech、數據平台與 AI 產品。Product Manager specializing in AdTech, Data Platforms, and AI.">
   <title>James Zhang — Product Manager</title>
   <style>
     /* ===== RESET ===== */
@@ -49,6 +49,10 @@
     img { display: block; max-width: 100%; height: auto; }
     strong { font-weight: 600; }
 
+    /* ===== BILINGUAL VISIBILITY ===== */
+    html[data-lang="en"] [lang="zh"] { display: none; }
+    html[data-lang="zh"] [lang="en"] { display: none; }
+
     .container {
       max-width: var(--max);
       margin: 0 auto;
@@ -73,7 +77,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
+      gap: 16px;
     }
     .nav-logo {
       font-size: 17px;
@@ -87,8 +91,36 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 28px;
+      gap: 24px;
       list-style: none;
+      flex: 1;
+      justify-content: center;
+    }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    /* Language toggle button */
+    .lang-btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 13px;
+      background: var(--accent-bg);
+      border: 1.5px solid var(--accent-fade);
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent);
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+    .lang-btn:hover {
+      background: var(--accent);
+      color: var(--bg);
+      border-color: var(--accent);
     }
     .nav-links a {
       font-size: 14px;
@@ -132,6 +164,7 @@
       background: none;
       border: none;
       padding: 4px;
+      flex-shrink: 0;
     }
     .hamburger span {
       display: block;
@@ -877,22 +910,31 @@
     <div class="nav-inner">
       <a href="#home" class="nav-logo">J<em>.</em>Zhang</a>
       <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#experience">Experience</a></li>
+        <li><a href="#about"><span lang="zh">關於</span><span lang="en">About</span></a></li>
+        <li><a href="#skills"><span lang="zh">技能</span><span lang="en">Skills</span></a></li>
+        <li><a href="#experience"><span lang="zh">經歷</span><span lang="en">Experience</span></a></li>
         <li><a href="#gogo">GoGo</a></li>
       </ul>
-      <a href="#contact" class="nav-cta">Get in touch ↗</a>
-      <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="nav-right">
+        <button class="lang-btn" id="lang-btn" aria-label="Switch to English">
+          <span lang="zh">EN</span>
+          <span lang="en">中</span>
+        </button>
+        <a href="#contact" class="nav-cta">
+          <span lang="zh">聯絡我 ↗</span>
+          <span lang="en">Get in touch ↗</span>
+        </a>
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
     <div class="nav-drawer" id="drawer">
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#experience">Experience</a>
+      <a href="#about"><span lang="zh">關於</span><span lang="en">About</span></a>
+      <a href="#skills"><span lang="zh">技能</span><span lang="en">Skills</span></a>
+      <a href="#experience"><span lang="zh">經歷</span><span lang="en">Experience</span></a>
       <a href="#gogo">GoGo</a>
-      <a href="#contact">Get in touch</a>
+      <a href="#contact"><span lang="zh">聯絡我</span><span lang="en">Get in touch</span></a>
     </div>
   </header>
 
@@ -904,21 +946,35 @@
         <div class="hero-content">
           <div class="hero-status">
             <span class="hero-status-dot"></span>
-            Product Manager &middot; Currently @ VMFive
+            <span lang="zh">產品經理・目前任職於 VMFive</span>
+            <span lang="en">Product Manager &middot; Currently @ VMFive</span>
           </div>
           <h1 class="hero-name">James<br>Zhang<span class="accent">.</span></h1>
-          <p class="hero-tagline">
+          <p class="hero-tagline" lang="zh">
+            以<strong>數據驅動的產品</strong>為核心<br>
+            橫跨 AdTech、數據分析與 AI 應用
+          </p>
+          <p class="hero-tagline" lang="en">
             Building <strong>data-driven products</strong><br>
             at the intersection of AdTech, Data &amp; AI
           </p>
-          <p class="hero-bio">
+          <p class="hero-bio" lang="zh">
+            具備技術底子的 PM——從廣告追蹤框架到 GCP 資料管道，我都親手交付。現在我在 VMFive 主導 AdTech 平台，同時以創辦人兼 CEO 的身分帶領 GoGo，一個 AI 旅遊新創。
+          </p>
+          <p class="hero-bio" lang="en">
             PM with a technical foundation — I've shipped everything from ad tracking frameworks
             to GCP data pipelines. Today I run the AdTech platform at VMFive and lead GoGo,
             an AI travel startup, as Founder and CEO.
           </p>
           <div class="hero-actions">
-            <a href="#experience" class="btn btn-dark">View Experience ↓</a>
-            <a href="#gogo" class="btn btn-outline">See GoGo →</a>
+            <a href="#experience" class="btn btn-dark">
+              <span lang="zh">查看經歷 ↓</span>
+              <span lang="en">View Experience ↓</span>
+            </a>
+            <a href="#gogo" class="btn btn-outline">
+              <span lang="zh">看看 GoGo →</span>
+              <span lang="en">See GoGo →</span>
+            </a>
           </div>
         </div>
 
@@ -936,15 +992,15 @@
           <div class="hero-stats">
             <div class="stat">
               <div class="stat-num">1M<em>+</em></div>
-              <div class="stat-lbl">Daily Impressions</div>
+              <div class="stat-lbl"><span lang="zh">每日曝光</span><span lang="en">Daily Impressions</span></div>
             </div>
             <div class="stat">
               <div class="stat-num">5</div>
-              <div class="stat-lbl">Years Exp.</div>
+              <div class="stat-lbl"><span lang="zh">年資</span><span lang="en">Years Exp.</span></div>
             </div>
             <div class="stat">
               <div class="stat-num">10</div>
-              <div class="stat-lbl">Person Team</div>
+              <div class="stat-lbl"><span lang="zh">人團隊</span><span lang="en">Person Team</span></div>
             </div>
           </div>
         </div>
@@ -956,27 +1012,44 @@
   <!-- ===== ABOUT ===== -->
   <section id="about">
     <div class="container">
-      <span class="label">01 &mdash; About</span>
-      <h2 class="heading">From code to product — and back again</h2>
+      <span class="label">
+        <span lang="zh">01 &mdash; 關於</span>
+        <span lang="en">01 &mdash; About</span>
+      </span>
+      <h2 class="heading" lang="zh">從工程師到 PM，我懂每一層的語言</h2>
+      <h2 class="heading" lang="en">From code to product — and back again</h2>
       <div class="about-grid">
         <div class="about-body">
-          <p>
-            I started as a <strong>front-end developer</strong>, building multilingual websites
-            and LINE mini-programs. That hands-on background led me into field engineering,
-            then data pipelines, and eventually into product management — which means I understand
-            exactly how products break at every layer of the stack.
-          </p>
-          <p>
-            Today I own the AdTech roadmap at <strong>VMFive</strong>, where I'm responsible for
-            an SSP/DSP platform handling over a million daily ad impressions. I work closely
-            with engineering, data, and commercial teams to ship features that move real numbers —
-            launch-time reductions, reporting efficiency gains, cross-team coordination improvements.
-          </p>
-          <p>
-            Outside of work, I'm building <strong>GoGo</strong> — an AI-powered trip planning app —
-            as Founder and CEO. Leading a 10-person team from zero to product has been the most
-            valuable product education I've had.
-          </p>
+          <div lang="zh">
+            <p>
+              我以<strong>前端工程師</strong>起步，建構了多語系網站和 LINE 小程式。這段親手實作的背景，帶著我走進現場工程、數據管道，最終進入產品管理——也讓我清楚知道，產品在每一層架構上是怎麼壞掉的。
+            </p>
+            <p>
+              現在我在 <strong>VMFive</strong> 主導 AdTech 產品，負責每日處理逾百萬次廣告曝光的 SSP/DSP 平台。我與工程、數據及商務團隊緊密合作，推動切實影響數字的功能——上線時間縮短、報表效率提升、跨團隊協作改善。
+            </p>
+            <p>
+              工作之外，我以<strong>創辦人兼 CEO</strong> 的身分打造 GoGo——一款 AI 旅遊規劃 App。從零到一帶領十人團隊的歷程，是我至今最有價值的產品課。
+            </p>
+          </div>
+          <div lang="en">
+            <p>
+              I started as a <strong>front-end developer</strong>, building multilingual websites
+              and LINE mini-programs. That hands-on background led me into field engineering,
+              then data pipelines, and eventually into product management — which means I understand
+              exactly how products break at every layer of the stack.
+            </p>
+            <p>
+              Today I own the AdTech roadmap at <strong>VMFive</strong>, where I'm responsible for
+              an SSP/DSP platform handling over a million daily ad impressions. I work closely
+              with engineering, data, and commercial teams to ship features that move real numbers —
+              launch-time reductions, reporting efficiency gains, cross-team coordination improvements.
+            </p>
+            <p>
+              Outside of work, I'm building <strong>GoGo</strong> — an AI-powered trip planning app —
+              as Founder and CEO. Leading a 10-person team from zero to product has been the most
+              valuable product education I've had.
+            </p>
+          </div>
         </div>
 
         <div class="about-card">
@@ -989,8 +1062,8 @@
               </svg>
             </div>
             <div>
-              <div class="about-lbl">Location</div>
-              <div class="about-val">Taiwan</div>
+              <div class="about-lbl"><span lang="zh">所在地</span><span lang="en">Location</span></div>
+              <div class="about-val"><span lang="zh">台灣</span><span lang="en">Taiwan</span></div>
             </div>
           </div>
           <div class="about-row">
@@ -1002,11 +1075,9 @@
               </svg>
             </div>
             <div>
-              <div class="about-lbl">Current Role</div>
-              <div class="about-val">
-                Product Manager<br>
-                <small>VMFive &middot; Oct 2024 – Present</small>
-              </div>
+              <div class="about-lbl"><span lang="zh">現職</span><span lang="en">Current Role</span></div>
+              <div class="about-val" lang="zh">產品經理<br><small>VMFive &middot; Oct 2024 – 至今</small></div>
+              <div class="about-val" lang="en">Product Manager<br><small>VMFive &middot; Oct 2024 – Present</small></div>
             </div>
           </div>
           <div class="about-row">
@@ -1018,11 +1089,9 @@
               </svg>
             </div>
             <div>
-              <div class="about-lbl">Education</div>
-              <div class="about-val">
-                Automotive Electronics &amp; Information Security<br>
-                <small>Nan Kai University of Technology, 2016–2020</small>
-              </div>
+              <div class="about-lbl"><span lang="zh">學歷</span><span lang="en">Education</span></div>
+              <div class="about-val" lang="zh">汽車電子與資訊安全<br><small>南開科技大學・2016–2020</small></div>
+              <div class="about-val" lang="en">Automotive Electronics &amp; Information Security<br><small>Nan Kai University of Technology, 2016–2020</small></div>
             </div>
           </div>
           <div class="about-row">
@@ -1033,11 +1102,9 @@
               </svg>
             </div>
             <div>
-              <div class="about-lbl">Side Project</div>
-              <div class="about-val">
-                Founder &amp; CEO, GoGo<br>
-                <small>AI Travel Planning &middot; 2025</small>
-              </div>
+              <div class="about-lbl"><span lang="zh">個人專案</span><span lang="en">Side Project</span></div>
+              <div class="about-val" lang="zh">創辦人兼 CEO，GoGo<br><small>AI 旅遊規劃・2025</small></div>
+              <div class="about-val" lang="en">Founder &amp; CEO, GoGo<br><small>AI Travel Planning &middot; 2025</small></div>
             </div>
           </div>
         </div>
@@ -1048,11 +1115,12 @@
   <!-- ===== SKILLS ===== -->
   <section id="skills">
     <div class="container">
-      <span class="label">02 &mdash; Skills</span>
-      <h2 class="heading">What I bring to the table</h2>
+      <span class="label"><span lang="zh">02 &mdash; 技能</span><span lang="en">02 &mdash; Skills</span></span>
+      <h2 class="heading" lang="zh">我能帶來的價值</h2>
+      <h2 class="heading" lang="en">What I bring to the table</h2>
       <div class="skills-grid">
         <div class="skill-group">
-          <div class="skill-cat">Product</div>
+          <div class="skill-cat"><span lang="zh">產品</span><span lang="en">Product</span></div>
           <div class="skill-tags">
             <span class="tag">Roadmapping</span>
             <span class="tag">PMF Validation</span>
@@ -1065,7 +1133,7 @@
           </div>
         </div>
         <div class="skill-group">
-          <div class="skill-cat">Data</div>
+          <div class="skill-cat"><span lang="zh">數據</span><span lang="en">Data</span></div>
           <div class="skill-tags">
             <span class="tag">Python</span>
             <span class="tag">BigQuery</span>
@@ -1091,7 +1159,7 @@
           </div>
         </div>
         <div class="skill-group">
-          <div class="skill-cat">Frontend</div>
+          <div class="skill-cat"><span lang="zh">前端</span><span lang="en">Frontend</span></div>
           <div class="skill-tags">
             <span class="tag">HTML / CSS / JS</span>
             <span class="tag">i18n</span>
@@ -1108,8 +1176,9 @@
   <!-- ===== EXPERIENCE ===== -->
   <section id="experience">
     <div class="container">
-      <span class="label">03 &mdash; Work Experience</span>
-      <h2 class="heading">Where I've been</h2>
+      <span class="label"><span lang="zh">03 &mdash; 工作經歷</span><span lang="en">03 &mdash; Work Experience</span></span>
+      <h2 class="heading" lang="zh">我走過的地方</h2>
+      <h2 class="heading" lang="en">Where I've been</h2>
 
       <div class="timeline">
 
@@ -1118,16 +1187,21 @@
           <div class="tl-header">
             <div>
               <div class="tl-company">VMFive</div>
-              <div class="tl-role">Product Manager</div>
+              <div class="tl-role"><span lang="zh">產品經理</span><span lang="en">Product Manager</span></div>
             </div>
-            <span class="tl-period">Oct 2024 &ndash; Present</span>
+            <span class="tl-period"><span lang="zh">Oct 2024 &ndash; 至今</span><span lang="en">Oct 2024 &ndash; Present</span></span>
           </div>
           <ul class="tl-bullets">
-            <li>Led AdTech platform (SSP/DSP) processing <strong>1M+ daily impressions</strong>; designed and shipped self-serve DSP</li>
-            <li>Launched In-stream (VAST) video ad format; standardized event tracking framework across all placements</li>
-            <li>Modularized ad format architecture, reducing new-format launch time by <strong>50%</strong></li>
-            <li>Integrated GA4 + BigQuery + 3rd-party APIs into a scalable data platform with real-time dashboards, cutting reporting time by <strong>50%+</strong></li>
-            <li>Improved cross-team delivery efficiency by <strong>30%</strong> through process alignment and tooling</li>
+            <li lang="zh">主導 AdTech 平台（SSP/DSP），每日處理<strong>逾百萬次</strong>廣告曝光；設計並上線自助式 DSP</li>
+            <li lang="en">Led AdTech platform (SSP/DSP) processing <strong>1M+ daily impressions</strong>; designed and shipped self-serve DSP</li>
+            <li lang="zh">推出 In-stream（VAST）影片廣告格式；制定全平台事件追蹤標準</li>
+            <li lang="en">Launched In-stream (VAST) video ad format; standardized event tracking framework across all placements</li>
+            <li lang="zh">模組化廣告格式架構，新格式上線時間縮短 <strong>50%</strong></li>
+            <li lang="en">Modularized ad format architecture, reducing new-format launch time by <strong>50%</strong></li>
+            <li lang="zh">整合 GA4 + BigQuery + 第三方 API，建立可擴展的數據平台；即時儀表板讓報表產出效率提升 <strong>50%+</strong></li>
+            <li lang="en">Integrated GA4 + BigQuery + 3rd-party APIs into a scalable data platform with real-time dashboards, cutting reporting time by <strong>50%+</strong></li>
+            <li lang="zh">透過流程優化與工具建置，跨團隊交付效率提升 <strong>30%</strong></li>
+            <li lang="en">Improved cross-team delivery efficiency by <strong>30%</strong> through process alignment and tooling</li>
           </ul>
           <div class="tl-tags">
             <span class="tl-tag">Python</span>
@@ -1146,14 +1220,17 @@
           <div class="tl-header">
             <div>
               <div class="tl-company">Omnicom Media Group</div>
-              <div class="tl-role">Data Engineer</div>
+              <div class="tl-role"><span lang="zh">資料工程師</span><span lang="en">Data Engineer</span></div>
             </div>
             <span class="tl-period">Jun 2024 &ndash; Oct 2024</span>
           </div>
           <ul class="tl-bullets">
-            <li>Built GCP data pipelines integrating Media APIs (TTD, DV360) and Social APIs (TikTok)</li>
-            <li>Refactored Google Ads, Meta, and Line API integrations; automated performance reporting workflows</li>
-            <li>Implemented ID mapping and audience segmentation using GA4 with 1st- and 3rd-party data; led SaaS CDP POC evaluation</li>
+            <li lang="zh">在 GCP 建置媒體 API（TTD、DV360）與社群 API（TikTok）資料管道</li>
+            <li lang="en">Built GCP data pipelines integrating Media APIs (TTD, DV360) and Social APIs (TikTok)</li>
+            <li lang="zh">重構 Google Ads、Meta、Line API 整合；自動化報表工作流程</li>
+            <li lang="en">Refactored Google Ads, Meta, and Line API integrations; automated performance reporting workflows</li>
+            <li lang="zh">以 GA4 搭配第一方與第三方數據實作 ID mapping 及受眾分群；主導 SaaS CDP 評估</li>
+            <li lang="en">Implemented ID mapping and audience segmentation using GA4 with 1st- and 3rd-party data; led SaaS CDP POC evaluation</li>
           </ul>
           <div class="tl-tags">
             <span class="tl-tag">GCP</span>
@@ -1171,13 +1248,15 @@
           <div class="tl-header">
             <div>
               <div class="tl-company">Turingdigital</div>
-              <div class="tl-role">GA4 Project Manager</div>
+              <div class="tl-role"><span lang="zh">GA4 專案經理</span><span lang="en">GA4 Project Manager</span></div>
             </div>
             <span class="tl-period">Mar 2024 &ndash; May 2024</span>
           </div>
           <ul class="tl-bullets">
-            <li>Implemented GA4 with <strong>100+ custom events</strong>; delivered 10+ Looker Studio dashboards</li>
-            <li>Performed data insight analysis, anomaly detection, and GSC API analysis with Python</li>
+            <li lang="zh">導入 GA4 並設計<strong>逾百個自訂事件</strong>；交付 10+ 個 Looker Studio 儀表板</li>
+            <li lang="en">Implemented GA4 with <strong>100+ custom events</strong>; delivered 10+ Looker Studio dashboards</li>
+            <li lang="zh">執行數據洞察分析、異常偵測，以及 Python 搭配 GSC API 的搜尋分析</li>
+            <li lang="en">Performed data insight analysis, anomaly detection, and GSC API analysis with Python</li>
           </ul>
           <div class="tl-tags">
             <span class="tl-tag">GA4</span>
@@ -1193,14 +1272,17 @@
           <div class="tl-header">
             <div>
               <div class="tl-company">VMFive</div>
-              <div class="tl-role">Field Application Engineer</div>
+              <div class="tl-role"><span lang="zh">現場應用工程師</span><span lang="en">Field Application Engineer</span></div>
             </div>
             <span class="tl-period">Oct 2022 &ndash; Feb 2024</span>
           </div>
           <ul class="tl-bullets">
-            <li>SDK integration and testing for media ad placements; built ad templates in native JavaScript</li>
-            <li>Embedded GA4/GTM tracking; developed internal automation tools with Selenium and Robot Framework</li>
-            <li>Ran client technical workshops and maintained internal documentation</li>
+            <li lang="zh">媒體廣告版位的 SDK 整合與測試；以原生 JavaScript 開發廣告模板</li>
+            <li lang="en">SDK integration and testing for media ad placements; built ad templates in native JavaScript</li>
+            <li lang="zh">嵌入 GA4/GTM 追蹤；以 Selenium 與 Robot Framework 開發內部自動化工具</li>
+            <li lang="en">Embedded GA4/GTM tracking; developed internal automation tools with Selenium and Robot Framework</li>
+            <li lang="zh">舉辦客戶技術工作坊，維護內部技術文件</li>
+            <li lang="en">Ran client technical workshops and maintained internal documentation</li>
           </ul>
           <div class="tl-tags">
             <span class="tl-tag">JavaScript</span>
@@ -1216,14 +1298,17 @@
           <div class="tl-header">
             <div>
               <div class="tl-company">SMEGOLD</div>
-              <div class="tl-role">Front-end Developer</div>
+              <div class="tl-role"><span lang="zh">前端工程師</span><span lang="en">Front-end Developer</span></div>
             </div>
             <span class="tl-period">Mar 2021 &ndash; Mar 2022</span>
           </div>
           <ul class="tl-bullets">
-            <li>Built multilingual official websites with full i18n support (Traditional Chinese / Simplified Chinese)</li>
-            <li>Developed LINE OA and WeChat mini-program pages with chat integration and EIP form APIs</li>
-            <li>Implemented Google Maps check-in feature for location-based employee workflows</li>
+            <li lang="zh">建置支援多語系的官方網站，完整 i18n 支援（繁體中文／簡體中文）</li>
+            <li lang="en">Built multilingual official websites with full i18n support (Traditional Chinese / Simplified Chinese)</li>
+            <li lang="zh">開發 LINE OA 與微信小程式頁面，整合聊天功能與 EIP 表單 API</li>
+            <li lang="en">Developed LINE OA and WeChat mini-program pages with chat integration and EIP form APIs</li>
+            <li lang="zh">實作 Google Maps 打卡功能，支援以地點為基礎的員工出勤流程</li>
+            <li lang="en">Implemented Google Maps check-in feature for location-based employee workflows</li>
           </ul>
           <div class="tl-tags">
             <span class="tl-tag">HTML / CSS / JS</span>
@@ -1241,22 +1326,25 @@
   <!-- ===== GOGO ===== -->
   <section id="gogo">
     <div class="container">
-      <span class="label">04 &mdash; Side Project</span>
+      <span class="label">
+        <span lang="zh">04 &mdash; 個人專案</span>
+        <span lang="en">04 &mdash; Side Project</span>
+      </span>
 
       <div class="gogo-top">
         <div>
           <h2 class="gogo-display">GoGo</h2>
-          <div class="gogo-sub">&ldquo;Turn inspiration into your next journey&rdquo;</div>
+          <div class="gogo-sub" lang="zh">&ldquo;靈感不再只是收藏，而是你的下一趟旅程&rdquo;</div>
+          <div class="gogo-sub" lang="en">&ldquo;Turn inspiration into your next journey&rdquo;</div>
         </div>
         <div>
           <div class="gogo-badge">
             <span class="gogo-badge-dot"></span>
-            In Development &middot; Proposal Stage
+            <span lang="zh">開發中・提案階段</span>
+            <span lang="en">In Development &middot; Proposal Stage</span>
           </div>
-          <div class="gogo-founder">
-            Founder &amp; CEO<br>
-            10-person team &middot; 2025
-          </div>
+          <div class="gogo-founder" lang="zh">創辦人兼 CEO<br>十人團隊・2025</div>
+          <div class="gogo-founder" lang="en">Founder &amp; CEO<br>10-person team &middot; 2025</div>
         </div>
       </div>
 
@@ -1264,34 +1352,38 @@
 
         <!-- Features -->
         <div>
-          <div class="gogo-section-title">Core Features</div>
+          <div class="gogo-section-title"><span lang="zh">核心功能</span><span lang="en">Core Features</span></div>
           <div class="gogo-features">
             <div class="gogo-feat">
               <div class="gogo-num">01</div>
               <div>
-                <div class="gogo-feat-title">AI Itinerary Planning</div>
-                <div class="gogo-feat-desc">AI curates destinations then optimizes routes via a TSP-based algorithm — balancing time, distance, and transportation across multiple objectives.</div>
+                <div class="gogo-feat-title"><span lang="zh">AI 智慧排行程</span><span lang="en">AI Itinerary Planning</span></div>
+                <div class="gogo-feat-desc" lang="zh">AI 智選景點，結合 TSP 演算法進行多目標路線優化（時間、距離、交通方式並行考量）</div>
+                <div class="gogo-feat-desc" lang="en">AI curates destinations then optimizes routes via a TSP-based algorithm — balancing time, distance, and transportation across multiple objectives.</div>
               </div>
             </div>
             <div class="gogo-feat">
               <div class="gogo-num">02</div>
               <div>
-                <div class="gogo-feat-title">One-tap Import from Anywhere</div>
-                <div class="gogo-feat-desc">Pull saved places from Google Maps, Instagram, Xiaohongshu, or screenshots. CLIP image recognition auto-generates semantic tags.</div>
+                <div class="gogo-feat-title"><span lang="zh">第三方收藏一鍵匯入</span><span lang="en">One-tap Import from Anywhere</span></div>
+                <div class="gogo-feat-desc" lang="zh">從 Google Maps、Instagram、小紅書或截圖一鍵匯入已收藏景點。CLIP 圖像辨識自動生成語意標籤</div>
+                <div class="gogo-feat-desc" lang="en">Pull saved places from Google Maps, Instagram, Xiaohongshu, or screenshots. CLIP image recognition auto-generates semantic tags.</div>
               </div>
             </div>
             <div class="gogo-feat">
               <div class="gogo-num">03</div>
               <div>
-                <div class="gogo-feat-title">Tinder-style Spot Discovery</div>
-                <div class="gogo-feat-desc">Swipe to discover places. Embedding vector recommendation engine learns your travel taste over time.</div>
+                <div class="gogo-feat-title"><span lang="zh">滑動配對景點</span><span lang="en">Tinder-style Spot Discovery</span></div>
+                <div class="gogo-feat-desc" lang="zh">左滑右滑探索景點，向量嵌入推薦引擎持續學習你的旅行偏好</div>
+                <div class="gogo-feat-desc" lang="en">Swipe to discover places. Embedding vector recommendation engine learns your travel taste over time.</div>
               </div>
             </div>
             <div class="gogo-feat">
               <div class="gogo-num">04</div>
               <div>
-                <div class="gogo-feat-title">Personalized Travel Booklet</div>
-                <div class="gogo-feat-desc">Auto-generates a shareable, beautifully laid-out travel booklet from your final itinerary.</div>
+                <div class="gogo-feat-title"><span lang="zh">個人化旅遊小書</span><span lang="en">Personalized Travel Booklet</span></div>
+                <div class="gogo-feat-desc" lang="zh">根據最終行程自動生成精美的旅遊小書，隨時分享</div>
+                <div class="gogo-feat-desc" lang="en">Auto-generates a shareable, beautifully laid-out travel booklet from your final itinerary.</div>
               </div>
             </div>
           </div>
@@ -1299,26 +1391,32 @@
 
         <!-- Market -->
         <div>
-          <div class="gogo-section-title">Market Size</div>
+          <div class="gogo-section-title"><span lang="zh">市場規模</span><span lang="en">Market Size</span></div>
           <div class="gogo-market">
             <div class="gogo-metric">
               <div class="gogo-metric-num">13.77M</div>
               <div class="gogo-metric-lbl">TAM</div>
-              <div class="gogo-metric-desc">Taiwan independent travelers + inbound tourists</div>
+              <div class="gogo-metric-desc" lang="zh">台灣自由行旅客及入境觀光客</div>
+              <div class="gogo-metric-desc" lang="en">Taiwan independent travelers + inbound tourists</div>
             </div>
             <div class="gogo-metric">
               <div class="gogo-metric-num">4.37M</div>
               <div class="gogo-metric-lbl">SAM</div>
-              <div class="gogo-metric-desc">Serviceable addressable users</div>
+              <div class="gogo-metric-desc" lang="zh">可服務的目標用戶</div>
+              <div class="gogo-metric-desc" lang="en">Serviceable addressable users</div>
             </div>
             <div class="gogo-metric">
               <div class="gogo-metric-num">NT$585M</div>
               <div class="gogo-metric-lbl">SOM</div>
-              <div class="gogo-metric-desc">Estimated revenue potential</div>
+              <div class="gogo-metric-desc" lang="zh">預估營收規模</div>
+              <div class="gogo-metric-desc" lang="en">Estimated revenue potential</div>
             </div>
             <div class="gogo-metric gogo-metric-model">
-              <div class="gogo-metric-lbl">Business Model</div>
-              <div class="gogo-metric-desc">Subscription: NT$999 / year &nbsp;&middot;&nbsp; Single-use: NT$99 / trip</div>
+              <div class="gogo-metric-lbl"><span lang="zh">商業模式</span><span lang="en">Business Model</span></div>
+              <div class="gogo-metric-desc">
+                <span lang="zh">訂閱制：NT$999 / 年&nbsp;&nbsp;&middot;&nbsp;&nbsp;單次：NT$99 / 趟</span>
+                <span lang="en">Subscription: NT$999 / year &nbsp;&middot;&nbsp; Single-use: NT$99 / trip</span>
+              </div>
             </div>
           </div>
         </div>
@@ -1367,9 +1465,17 @@
   <!-- ===== CONTACT ===== -->
   <section id="contact">
     <div class="container">
-      <span class="label">05 &mdash; Contact</span>
-      <h2 class="contact-heading">Let's build<br>something.</h2>
-      <p class="contact-sub">
+      <span class="label">
+        <span lang="zh">05 &mdash; 聯絡</span>
+        <span lang="en">05 &mdash; Contact</span>
+      </span>
+      <h2 class="contact-heading" lang="zh">一起打造<br>好產品。</h2>
+      <h2 class="contact-heading" lang="en">Let's build<br>something.</h2>
+      <p class="contact-sub" lang="zh">
+        歡迎聊 PM 職缺、AdTech 與數據平台機會，<br>
+        或一起交流產品想法。
+      </p>
+      <p class="contact-sub" lang="en">
         Open to PM roles, AdTech &amp; data platform opportunities,<br>
         and collaboration on product ideas.
       </p>
@@ -1427,6 +1533,31 @@
         drawer.classList.remove('open');
       });
     });
+
+    // Language toggle with localStorage
+    (function () {
+      var html    = document.documentElement;
+      var langBtn = document.getElementById('lang-btn');
+
+      function applyLang(lang) {
+        html.setAttribute('data-lang', lang);
+        localStorage.setItem('lang', lang);
+        langBtn.setAttribute(
+          'aria-label',
+          lang === 'zh' ? 'Switch to English' : '切換至中文'
+        );
+      }
+
+      // Restore saved preference on load
+      var saved = localStorage.getItem('lang');
+      if (saved === 'en' || saved === 'zh') {
+        applyLang(saved);
+      }
+
+      langBtn.addEventListener('click', function () {
+        applyLang(html.getAttribute('data-lang') === 'zh' ? 'en' : 'zh');
+      });
+    })();
   </script>
 
 </body>
