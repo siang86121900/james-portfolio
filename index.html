@@ -1425,7 +1425,7 @@
 
       <hr class="gogo-divider">
 
-      <div class="gogo-section-title" style="margin-bottom:14px">Tech Stack</div>
+      <div class="gogo-section-title" style="margin-bottom:14px"><span lang="zh">技術棧</span><span lang="en">Tech Stack</span></div>
       <div class="gogo-tech-row">
         <span class="tech-chip">Embedding Vectors</span>
         <span class="tech-chip">CLIP Multimodal</span>
@@ -1435,27 +1435,27 @@
         <span class="tech-chip">Python</span>
       </div>
 
-      <div class="gogo-section-title" style="margin-bottom:24px">Roadmap</div>
+      <div class="gogo-section-title" style="margin-bottom:24px"><span lang="zh">產品藍圖</span><span lang="en">Roadmap</span></div>
       <div class="gogo-roadmap">
         <div class="rm-step">
           <div class="rm-dot"></div>
           <div class="rm-date">2025 / Q3</div>
-          <div class="rm-label">MVP Launch (Planned)</div>
+          <div class="rm-label"><span lang="zh">MVP 上線（計畫）</span><span lang="en">MVP Launch (Planned)</span></div>
         </div>
         <div class="rm-step">
           <div class="rm-dot"></div>
           <div class="rm-date">2025 / Q4</div>
-          <div class="rm-label">Subscription Model</div>
+          <div class="rm-label"><span lang="zh">訂閱模式</span><span lang="en">Subscription Model</span></div>
         </div>
         <div class="rm-step">
           <div class="rm-dot"></div>
           <div class="rm-date">2026 / Q2</div>
-          <div class="rm-label">B2B Expansion</div>
+          <div class="rm-label"><span lang="zh">B2B 拓展</span><span lang="en">B2B Expansion</span></div>
         </div>
         <div class="rm-step">
           <div class="rm-dot"></div>
           <div class="rm-date">2026 / Q4</div>
-          <div class="rm-label">Internationalization</div>
+          <div class="rm-label"><span lang="zh">國際化</span><span lang="en">Internationalization</span></div>
         </div>
       </div>
 
@@ -1515,7 +1515,8 @@
 
   <!-- ===== FOOTER ===== -->
   <footer class="footer">
-    <p>&copy; 2026 James Zhang &mdash; Built with care, no frameworks required.</p>
+    <p lang="zh">&copy; 2026 James Zhang &mdash; 用心手刻，零框架依賴。</p>
+    <p lang="en">&copy; 2026 James Zhang &mdash; Built with care, no frameworks required.</p>
   </footer>
 
   <!-- ===== JS ===== -->
@@ -1536,26 +1537,27 @@
 
     // Language toggle with localStorage
     (function () {
-      var html    = document.documentElement;
-      var langBtn = document.getElementById('lang-btn');
+      var LANG_KEY = 'jz-lang';
+      var html     = document.documentElement;
+      var langBtn  = document.getElementById('lang-btn');
 
-      function applyLang(lang) {
+      function setLang(lang) {
         html.setAttribute('data-lang', lang);
-        localStorage.setItem('lang', lang);
+        html.setAttribute('lang', lang === 'zh' ? 'zh-TW' : 'en');
         langBtn.setAttribute(
           'aria-label',
-          lang === 'zh' ? 'Switch to English' : '切換至中文'
+          lang === 'zh' ? 'Switch to English' : '切換為繁體中文'
         );
+        try { localStorage.setItem(LANG_KEY, lang); } catch (e) {}
       }
 
-      // Restore saved preference on load
-      var saved = localStorage.getItem('lang');
-      if (saved === 'en' || saved === 'zh') {
-        applyLang(saved);
-      }
+      // Restore saved preference; default to zh
+      var saved;
+      try { saved = localStorage.getItem(LANG_KEY); } catch (e) {}
+      setLang(saved === 'en' ? 'en' : 'zh');
 
       langBtn.addEventListener('click', function () {
-        applyLang(html.getAttribute('data-lang') === 'zh' ? 'en' : 'zh');
+        setLang(html.getAttribute('data-lang') === 'zh' ? 'en' : 'zh');
       });
     })();
   </script>
