@@ -584,12 +584,11 @@
 
     /* ===== GOGO ===== */
     #gogo {
-      background: var(--dark);
-      color: var(--dark-text);
+      background: var(--bg-2);
       padding: var(--py) 0;
     }
-    #gogo .label { color: var(--amber); }
-    #gogo .label::before { background: var(--amber); }
+    #gogo .label { color: var(--accent); }
+    #gogo .label::before { background: var(--accent); }
 
     .gogo-top {
       display: grid;
@@ -603,45 +602,24 @@
       font-weight: 800;
       letter-spacing: -0.04em;
       line-height: 0.88;
-      color: var(--dark-text);
+      color: var(--ink);
     }
     .gogo-sub {
       font-size: 18px;
-      color: rgba(248,246,241,0.5);
+      color: var(--ink-60);
       margin-top: 18px;
       font-style: italic;
       line-height: 1.5;
     }
 
-    .gogo-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 9px 16px;
-      background: var(--amber-bg);
-      border: 1px solid var(--amber-fade);
-      border-radius: 100px;
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--amber);
-      white-space: nowrap;
-    }
-    .gogo-badge-dot {
-      width: 7px; height: 7px;
-      background: var(--amber);
-      border-radius: 50%;
-    }
     .gogo-founder {
       margin-top: 12px;
       font-size: 12px;
-      color: rgba(248,246,241,0.4);
+      color: var(--ink-30);
       line-height: 1.6;
     }
 
     .gogo-body {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 56px;
       margin-bottom: 52px;
     }
 
@@ -650,7 +628,7 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.12em;
-      color: rgba(248,246,241,0.35);
+      color: var(--ink-30);
       margin-bottom: 24px;
     }
 
@@ -664,9 +642,9 @@
       font-family: var(--mono);
       font-size: 11px;
       font-weight: 700;
-      color: var(--amber);
-      background: var(--amber-bg);
-      border: 1px solid var(--amber-fade);
+      color: var(--accent);
+      background: var(--accent-bg);
+      border: 1px solid var(--accent-fade);
       min-width: 28px; height: 28px;
       display: flex;
       align-items: center;
@@ -677,118 +655,54 @@
     .gogo-feat-title {
       font-size: 15px;
       font-weight: 700;
-      color: var(--dark-text);
+      color: var(--ink);
       margin-bottom: 5px;
     }
     .gogo-feat-desc {
       font-size: 13px;
-      color: rgba(248,246,241,0.5);
+      color: var(--ink-60);
       line-height: 1.6;
     }
 
-    .gogo-market {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+
+    .gogo-tech-groups {
+      display: flex;
+      flex-direction: column;
       gap: 14px;
-      align-content: start;
+      margin-bottom: 52px;
     }
-    .gogo-metric {
-      background: rgba(248,246,241,0.04);
-      border: 1px solid rgba(248,246,241,0.09);
-      border-radius: 12px;
-      padding: 20px 14px;
+    .gogo-tech-group {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
     }
-    .gogo-metric-num {
-      font-size: clamp(22px, 2.8vw, 34px);
-      font-weight: 800;
-      color: var(--amber);
-      letter-spacing: -0.03em;
-      line-height: 1;
-      margin-bottom: 7px;
-    }
-    .gogo-metric-lbl {
+    .gogo-tech-cat {
+      font-family: var(--mono);
       font-size: 10px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      color: rgba(248,246,241,0.4);
-      margin-bottom: 5px;
+      color: var(--ink-30);
+      min-width: 72px;
+      flex-shrink: 0;
+      padding-top: 6px;
     }
-    .gogo-metric-desc {
-      font-size: 11px;
-      color: rgba(248,246,241,0.35);
-      line-height: 1.45;
-    }
-    .gogo-metric-model {
-      grid-column: 1 / -1;
-      background: rgba(217,119,6,0.07);
-      border-color: var(--amber-fade);
-    }
-    .gogo-metric-model .gogo-metric-lbl { color: var(--amber); }
-
-    .gogo-divider {
-      border: none;
-      border-top: 1px solid rgba(248,246,241,0.08);
-      margin: 48px 0;
-    }
-
     .gogo-tech-row {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-bottom: 52px;
     }
     .tech-chip {
       font-family: var(--mono);
       font-size: 12px;
       font-weight: 500;
-      color: rgba(248,246,241,0.65);
-      background: rgba(248,246,241,0.05);
-      border: 1px solid rgba(248,246,241,0.1);
+      color: var(--ink-60);
+      background: var(--bg);
+      border: 1px solid var(--ink-10);
       padding: 5px 12px;
       border-radius: 5px;
     }
 
-    .gogo-roadmap {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-    }
-    .rm-step { position: relative; padding-top: 30px; }
-    .rm-step::before {
-      content: '';
-      position: absolute;
-      top: 5px; left: 0; right: 0;
-      height: 2px;
-      background: rgba(248,246,241,0.12);
-    }
-    .rm-step:first-child::before { left: 50%; }
-    .rm-step:last-child::before  { right: 50%; }
-    .rm-dot {
-      position: absolute;
-      top: -1px; left: 50%;
-      transform: translateX(-50%);
-      width: 13px; height: 13px;
-      border-radius: 50%;
-      border: 2px solid rgba(248,246,241,0.2);
-      background: var(--dark);
-    }
-    .rm-dot.current { border-color: var(--amber); background: var(--amber); }
-    .rm-date {
-      font-family: var(--mono);
-      font-size: 10px;
-      font-weight: 700;
-      color: var(--amber);
-      text-align: center;
-      margin-bottom: 7px;
-    }
-    .rm-label {
-      font-size: 12px;
-      font-weight: 600;
-      color: rgba(248,246,241,0.6);
-      text-align: center;
-      line-height: 1.4;
-    }
-    .rm-step:first-child .rm-label { color: rgba(248,246,241,0.9); }
 
     /* ===== CONTACT ===== */
     #contact { text-align: center; padding-bottom: calc(var(--py) + 24px); }
@@ -851,8 +765,6 @@
     @media (max-width: 1024px) {
       .hero-grid { grid-template-columns: 1fr 320px; gap: 48px; }
       .skills-grid { grid-template-columns: repeat(2, 1fr); }
-      .gogo-market { grid-template-columns: 1fr 1fr; }
-      .gogo-metric-model { grid-column: 1 / -1; }
     }
 
     @media (max-width: 768px) {
@@ -886,11 +798,8 @@
       .skills-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
 
       .gogo-top { grid-template-columns: 1fr; }
-      .gogo-body { grid-template-columns: 1fr; gap: 40px; }
-      .gogo-market { grid-template-columns: 1fr 1fr; }
-      .gogo-roadmap { grid-template-columns: 1fr 1fr; gap: 24px 0; }
-      .rm-step::before { display: none; }
-      .rm-dot { position: static; transform: none; margin: 0 auto 10px; }
+      .gogo-tech-group { flex-direction: column; gap: 8px; }
+      .gogo-tech-cat { min-width: auto; padding-top: 0; }
     }
 
     @media (max-width: 480px) {
@@ -899,9 +808,6 @@
       .stat-num { font-size: 18px; }
       .stat-lbl { font-size: 9px; }
       .gogo-display { font-size: 64px; }
-      .gogo-market { grid-template-columns: 1fr; }
-      .gogo-metric-model { grid-column: auto; }
-      .gogo-roadmap { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
@@ -1340,11 +1246,6 @@
           <div class="gogo-sub" lang="en">&ldquo;Turn inspiration into your next journey&rdquo;</div>
         </div>
         <div>
-          <div class="gogo-badge">
-            <span class="gogo-badge-dot"></span>
-            <span lang="zh">開發中・提案階段</span>
-            <span lang="en">In Development &middot; Proposal Stage</span>
-          </div>
           <div class="gogo-founder" lang="zh">創辦人兼 CEO<br>十人團隊・2025</div>
           <div class="gogo-founder" lang="en">Founder &amp; CEO<br>10-person team &middot; 2025</div>
         </div>
@@ -1391,73 +1292,41 @@
           </div>
         </div>
 
-        <!-- Market -->
-        <div>
-          <div class="gogo-section-title"><span lang="zh">市場規模</span><span lang="en">Market Size</span></div>
-          <div class="gogo-market">
-            <div class="gogo-metric">
-              <div class="gogo-metric-num">13.77M</div>
-              <div class="gogo-metric-lbl">TAM</div>
-              <div class="gogo-metric-desc" lang="zh">台灣自由行旅客及入境觀光客</div>
-              <div class="gogo-metric-desc" lang="en">Taiwan independent travelers + inbound tourists</div>
-            </div>
-            <div class="gogo-metric">
-              <div class="gogo-metric-num">4.37M</div>
-              <div class="gogo-metric-lbl">SAM</div>
-              <div class="gogo-metric-desc" lang="zh">可服務的目標用戶</div>
-              <div class="gogo-metric-desc" lang="en">Serviceable addressable users</div>
-            </div>
-            <div class="gogo-metric">
-              <div class="gogo-metric-num">NT$585M</div>
-              <div class="gogo-metric-lbl">SOM</div>
-              <div class="gogo-metric-desc" lang="zh">預估營收規模</div>
-              <div class="gogo-metric-desc" lang="en">Estimated revenue potential</div>
-            </div>
-            <div class="gogo-metric gogo-metric-model">
-              <div class="gogo-metric-lbl"><span lang="zh">商業模式</span><span lang="en">Business Model</span></div>
-              <div class="gogo-metric-desc">
-                <span lang="zh">訂閱制：NT$999 / 年&nbsp;&nbsp;&middot;&nbsp;&nbsp;單次：NT$99 / 趟</span>
-                <span lang="en">Subscription: NT$999 / year &nbsp;&middot;&nbsp; Single-use: NT$99 / trip</span>
-              </div>
-            </div>
+      </div>
+
+      <div class="gogo-section-title" style="margin-bottom:16px"><span lang="zh">技術棧</span><span lang="en">Tech Stack</span></div>
+      <div class="gogo-tech-groups">
+        <div class="gogo-tech-group">
+          <span class="gogo-tech-cat">App</span>
+          <div class="gogo-tech-row">
+            <span class="tech-chip">React Native</span>
+            <span class="tech-chip">TypeScript</span>
+            <span class="tech-chip">Kotlin</span>
+            <span class="tech-chip">Swift</span>
           </div>
         </div>
-
-      </div>
-
-      <hr class="gogo-divider">
-
-      <div class="gogo-section-title" style="margin-bottom:14px"><span lang="zh">技術棧</span><span lang="en">Tech Stack</span></div>
-      <div class="gogo-tech-row">
-        <span class="tech-chip">Embedding Vectors</span>
-        <span class="tech-chip">CLIP Multimodal</span>
-        <span class="tech-chip">NLP (BERT / GPT)</span>
-        <span class="tech-chip">TSP Algorithm</span>
-        <span class="tech-chip">Multi-objective Optimization</span>
-        <span class="tech-chip">Python</span>
-      </div>
-
-      <div class="gogo-section-title" style="margin-bottom:24px"><span lang="zh">產品藍圖</span><span lang="en">Roadmap</span></div>
-      <div class="gogo-roadmap">
-        <div class="rm-step">
-          <div class="rm-dot"></div>
-          <div class="rm-date">2025 / Q3</div>
-          <div class="rm-label"><span lang="zh">MVP 上線（計畫）</span><span lang="en">MVP Launch (Planned)</span></div>
+        <div class="gogo-tech-group">
+          <span class="gogo-tech-cat">Backend</span>
+          <div class="gogo-tech-row">
+            <span class="tech-chip">Go</span>
+            <span class="tech-chip">PostgreSQL</span>
+            <span class="tech-chip">Docker</span>
+          </div>
         </div>
-        <div class="rm-step">
-          <div class="rm-dot"></div>
-          <div class="rm-date">2025 / Q4</div>
-          <div class="rm-label"><span lang="zh">訂閱模式</span><span lang="en">Subscription Model</span></div>
+        <div class="gogo-tech-group">
+          <span class="gogo-tech-cat">AI / Data</span>
+          <div class="gogo-tech-row">
+            <span class="tech-chip">Python</span>
+            <span class="tech-chip">Gemini API</span>
+            <span class="tech-chip">MCP Servers</span>
+            <span class="tech-chip">Google Maps Scraper</span>
+          </div>
         </div>
-        <div class="rm-step">
-          <div class="rm-dot"></div>
-          <div class="rm-date">2026 / Q2</div>
-          <div class="rm-label"><span lang="zh">B2B 拓展</span><span lang="en">B2B Expansion</span></div>
-        </div>
-        <div class="rm-step">
-          <div class="rm-dot"></div>
-          <div class="rm-date">2026 / Q4</div>
-          <div class="rm-label"><span lang="zh">國際化</span><span lang="en">Internationalization</span></div>
+        <div class="gogo-tech-group">
+          <span class="gogo-tech-cat">Infra</span>
+          <div class="gogo-tech-row">
+            <span class="tech-chip">Terraform</span>
+          </div>
         </div>
       </div>
 
