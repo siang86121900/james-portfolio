@@ -26,18 +26,13 @@
       --amber-bg:    rgba(217,119,6,0.12);
       --amber-fade:  rgba(217,119,6,0.3);
       --green:       #059669;
-      /* GoGo main-case block (dark navy: same hue family as --accent, deeper and calmer) */
-      --works-bg:          #0D2449;
-      --works-bg-top:      #123063;
-      --works-bg-bottom:   #0A1B38;
-      --works-ink:         #F3F6FC;
-      --works-ink-60:      rgba(243,246,252,0.74);
-      --works-ink-40:      rgba(243,246,252,0.56);
-      --works-surface-2:   rgba(255,255,255,0.09);
-      --works-line:        rgba(255,255,255,0.12);
-      --works-accent:      #93B4FF;
-      --works-accent-bg:   rgba(147,180,255,0.12);
-      --works-accent-fade: rgba(147,180,255,0.35);
+      /* GoGo main-case block: brand-blue plate with white content panels */
+      --works-bg:          #2563EB;
+      --works-bg-top:      #1E56D9;
+      --works-bg-bottom:   #1E4FD1;
+      --works-ink:         #FFFFFF;
+      --works-ink-60:      rgba(255,255,255,0.96);
+      --works-panel:       #FFFDFA;
       --font:        -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
       --mono:        "SF Mono", "Fira Code", "Consolas", "Courier New", monospace;
       --r:           8px;
@@ -750,20 +745,6 @@
       letter-spacing: 0;
     }
 
-    .ai-more {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      margin-top: 32px;
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--accent);
-      border-bottom: 1.5px solid var(--accent-fade);
-      padding-bottom: 2px;
-      transition: border-color 0.15s;
-    }
-    .ai-more:hover { border-color: var(--accent); }
-
     /* ===== GOGO (main case inside #works) ===== */
     .gogo-top {
       display: grid;
@@ -899,45 +880,41 @@
     }
     .works-kicker-ai { margin-top: 80px; }
 
-    /* Main case block: the only dark element in the section (keeps id="gogo" as the anchor target) */
+    /* Main case block: brand-blue plate, white title row, white content panels (keeps id="gogo" as the anchor target) */
     .works-case {
       margin-top: 24px;
       padding: 44px 48px;
       color: var(--works-ink);
-      background: linear-gradient(180deg, var(--works-bg-top) 0%, var(--works-bg) 45%, var(--works-bg-bottom) 100%);
-      border: 1px solid var(--works-line);
+      background: linear-gradient(180deg, var(--works-bg-top) 0%, var(--works-bg) 55%, var(--works-bg-bottom) 100%);
       border-radius: 20px;
-      box-shadow: 0 24px 60px rgba(13,36,73,0.18);
+      box-shadow: 0 24px 60px rgba(37,99,235,0.28);
       scroll-margin-top: 84px;
     }
-    .works-case .works-kicker { color: var(--works-ink-40); }
-    .works-case .gogo-tech-groups { margin-bottom: 0; }
+    .works-case .works-kicker { color: var(--works-ink); }
     .works-case .gogo-display { color: var(--works-ink); }
     .works-case .gogo-sub { color: var(--works-ink-60); }
-    .works-case .gogo-founder { color: var(--works-ink-40); }
-    .works-case .gogo-section-title { color: var(--works-ink-40); }
-    .works-case .gogo-num {
-      color: var(--works-accent);
-      background: var(--works-accent-bg);
-      border-color: var(--works-accent-fade);
+    .works-case .gogo-founder { color: var(--works-ink); }
+    .works-case .gogo-top { margin-bottom: 36px; }
+    .works-case .gogo-top .tl-period { color: var(--accent); background: #FFFFFF; border-color: #FFFFFF; }
+
+    /* White content panels inside the plate */
+    .works-panel {
+      background: var(--works-panel);
+      color: var(--ink);
+      border-radius: 14px;
+      padding: 28px;
     }
-    .works-case .gogo-feat:hover .gogo-num { background: var(--works-accent); color: var(--works-bg); }
-    .works-case .gogo-feat-title { color: var(--works-ink); }
-    .works-case .gogo-feat-desc { color: var(--works-ink-60); }
-    .works-case .gogo-tech-cat { color: var(--works-ink-40); }
-    .works-case .tech-chip {
-      color: var(--works-ink-60);
-      background: var(--works-surface-2);
-      border-color: var(--works-line);
-    }
-    .works-case .tech-chip:hover { border-color: var(--works-accent); color: var(--works-accent); }
-    .works-case .tl-period {
-      color: var(--works-ink-60);
-      background: var(--works-surface-2);
-      border-color: var(--works-line);
-    }
+    .works-case .gogo-body { margin-bottom: 20px; }
+    .works-case .gogo-tech-groups { margin-bottom: 0; }
+    .works-case .gogo-section-title { color: var(--ink-60); }
+    .works-case .gogo-tech-cat { color: var(--ink-60); }
+    .works-case .gogo-feat-title { color: var(--ink); }
+    .works-case .gogo-feat-desc { color: var(--ink-60); }
+    .works-case .tech-chip { color: var(--ink); background: var(--bg); border-color: var(--ink-10); }
+    .works-case .tech-chip:hover { border-color: var(--accent); color: var(--accent); }
 
     /* ===== SERVICES ===== */
+    #services { background: var(--bg-2); }
     .svc-intro {
       font-size: 17px;
       color: var(--ink-60);
@@ -1068,7 +1045,7 @@
       .nav-cta:hover, .btn-dark:hover, .btn-outline:hover,
       .social-link:hover, .skill-group:hover, .ai-card:hover, .svc-card:hover { transform: none; }
       .nav-links a::after, .lang-btn, .nav-cta, .btn, .tag, .tl-tag, .tech-chip,
-      .skill-group, .ai-card, .svc-card, .ai-more, .contact-email, .social-link, .hamburger span,
+      .skill-group, .ai-card, .svc-card, .contact-email, .social-link, .hamburger span,
       .tl-item::before, .gogo-num, .nav { transition: none; }
     }
 
@@ -1113,6 +1090,7 @@
       .ai-tools { grid-template-columns: 1fr; }
 
       .works-case { padding: 28px 22px; border-radius: 16px; }
+      .works-panel { padding: 22px 18px; }
       .works-kicker-ai { margin-top: 56px; }
 
       .gogo-top { grid-template-columns: 1fr; }
@@ -1591,7 +1569,7 @@
           </div>
         </div>
 
-        <div class="gogo-body">
+        <div class="gogo-body works-panel">
 
           <!-- Features -->
           <div>
@@ -1634,6 +1612,7 @@
 
         </div>
 
+        <div class="works-panel">
         <div class="gogo-section-title" style="margin-bottom:16px"><span lang="zh">技術棧</span><span lang="en">Tech Stack</span></div>
         <div class="gogo-tech-groups">
           <div class="gogo-tech-group">
@@ -1668,6 +1647,7 @@
               <span class="tech-chip">Terraform</span>
             </div>
           </div>
+        </div>
         </div>
       </div>
 
@@ -1834,10 +1814,6 @@
 
       </div>
 
-      <a href="#gogo" class="ai-more">
-        <span lang="zh">另見 GoGo →</span>
-        <span lang="en">See also GoGo →</span>
-      </a>
     </div>
   </section>
 
