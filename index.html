@@ -156,10 +156,9 @@
       font-size: 13px;
       font-weight: 600;
       white-space: nowrap;
-      transition: background 0.15s, transform 0.15s;
+      transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
     }
     .nav-cta:hover { background: var(--accent); transform: translateY(-1px); box-shadow: 0 6px 16px rgba(37,99,235,0.25); }
-    .nav-cta { transition: background 0.15s, transform 0.15s, box-shadow 0.15s; }
 
     .hamburger {
       display: none;
@@ -1766,11 +1765,22 @@
       });
       document.documentElement.classList.add('js-reveal');
 
+      // Reveal transition is 0.7s; stagger delay is at most 0.4s. Once both are
+      // over, drop the reveal hooks so the element falls back to its own CSS
+      // (restores hover transform / transition). End state is identical
+      // (opacity 1, transform none), so nothing flashes.
+      var SETTLE_MS = 700 + 400 + 100;
+      function settle(el) {
+        el.classList.remove('is-in');
+        el.removeAttribute('data-reveal');
+        el.style.removeProperty('--reveal-delay');
+      }
       var io = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
             entry.target.classList.add('is-in');
             io.unobserve(entry.target);
+            setTimeout(function () { settle(entry.target); }, SETTLE_MS);
           }
         });
       }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
