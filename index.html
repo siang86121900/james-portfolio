@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="James Zhang — 產品經理，專注於 AdTech、數據平台與 AI 產品。Product Manager specializing in AdTech, Data Platforms, and AI.">
+  <meta name="description" content="James Zhang — 產品經理，專注於 AdTech、數據平台與 AI 產品，並親手打造、每日使用 AI agent 系統。Product Manager specializing in AdTech, Data Platforms, and AI — building and running his own AI agent systems daily.">
   <title>James Zhang — Product Manager</title>
   <style>
     /* ===== RESET ===== */
@@ -480,6 +480,7 @@
       transition: border-color 0.15s, color 0.15s;
     }
     .tag:hover { border-color: var(--accent); color: var(--accent); }
+    .skill-group-ai { grid-column: 1 / -1; }
 
     /* ===== EXPERIENCE ===== */
     #experience { background: var(--bg-2); }
@@ -581,6 +582,106 @@
       padding: 3px 9px;
       border-radius: 4px;
     }
+
+    /* ===== AI IN PRACTICE ===== */
+    .ai-intro {
+      font-size: 17px;
+      color: var(--ink-60);
+      line-height: 1.8;
+      max-width: 720px;
+      margin-top: 24px;
+    }
+    .ai-intro strong { color: var(--ink); }
+
+    .ai-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 48px;
+    }
+    .ai-card-wide { grid-column: 1 / -1; }
+    .ai-card {
+      background: var(--bg-2);
+      border: 1px solid var(--ink-10);
+      border-radius: 14px;
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .ai-card-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .ai-card-title {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      line-height: 1.3;
+      color: var(--ink);
+    }
+    .ai-card-desc {
+      font-size: 14px;
+      color: var(--ink-60);
+      line-height: 1.7;
+      flex: 1;
+    }
+    .ai-card-desc p + p { margin-top: 10px; }
+    .ai-card-desc strong { color: var(--ink); }
+
+    .ai-tools {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 6px;
+    }
+    .ai-tool {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding-top: 16px;
+      border-top: 1px solid var(--ink-10);
+    }
+    .ai-tool-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      line-height: 1.35;
+    }
+    .ai-tool-name a {
+      color: var(--accent);
+      border-bottom: 1.5px solid var(--accent-fade);
+      transition: border-color 0.15s;
+    }
+    .ai-tool-name a:hover { border-color: var(--accent); }
+    .ai-tool-name small {
+      display: block;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--ink-60);
+      margin-top: 3px;
+      word-break: break-all;
+    }
+    .ai-tool .ai-card-desc { font-size: 13px; line-height: 1.65; }
+
+    .ai-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 32px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent);
+      border-bottom: 1.5px solid var(--accent-fade);
+      padding-bottom: 2px;
+      transition: border-color 0.15s;
+    }
+    .ai-more:hover { border-color: var(--accent); }
 
     /* ===== GOGO ===== */
     #gogo {
@@ -765,6 +866,7 @@
     @media (max-width: 1024px) {
       .hero-grid { grid-template-columns: 1fr 320px; gap: 48px; }
       .skills-grid { grid-template-columns: repeat(2, 1fr); }
+      .ai-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 768px) {
@@ -797,6 +899,8 @@
 
       .skills-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
 
+      .ai-tools { grid-template-columns: 1fr; }
+
       .gogo-top { grid-template-columns: 1fr; }
       .gogo-tech-group { flex-direction: column; gap: 8px; }
       .gogo-tech-cat { min-width: auto; padding-top: 0; }
@@ -821,6 +925,7 @@
         <li><a href="#about"><span lang="zh">關於</span><span lang="en">About</span></a></li>
         <li><a href="#skills"><span lang="zh">技能</span><span lang="en">Skills</span></a></li>
         <li><a href="#experience"><span lang="zh">經歷</span><span lang="en">Experience</span></a></li>
+        <li><a href="#ai"><span lang="zh">AI 實作</span><span lang="en">AI in Practice</span></a></li>
         <li><a href="#gogo">GoGo</a></li>
       </ul>
       <div class="nav-right">
@@ -841,6 +946,7 @@
       <a href="#about"><span lang="zh">關於</span><span lang="en">About</span></a>
       <a href="#skills"><span lang="zh">技能</span><span lang="en">Skills</span></a>
       <a href="#experience"><span lang="zh">經歷</span><span lang="en">Experience</span></a>
+      <a href="#ai"><span lang="zh">AI 實作</span><span lang="en">AI in Practice</span></a>
       <a href="#gogo">GoGo</a>
       <a href="#contact"><span lang="zh">聯絡我</span><span lang="en">Get in touch</span></a>
     </div>
@@ -1077,6 +1183,18 @@
             <span class="tag">Robot Framework</span>
           </div>
         </div>
+        <div class="skill-group skill-group-ai">
+          <div class="skill-cat">AI / Agents</div>
+          <div class="skill-tags">
+            <span class="tag">Claude Code</span>
+            <span class="tag">MCP</span>
+            <span class="tag">Multi-agent Orchestration</span>
+            <span class="tag">Prompt Engineering</span>
+            <span class="tag">Gemini API</span>
+            <span class="tag">Whisper / TTS</span>
+            <span class="tag">Agent Guardrails (hooks)</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1231,12 +1349,144 @@
     </div>
   </section>
 
+  <!-- ===== AI IN PRACTICE ===== -->
+  <section id="ai">
+    <div class="container">
+      <span class="label">
+        <span lang="zh">04 &mdash; AI 實作</span>
+        <span lang="en">04 &mdash; AI in Practice</span>
+      </span>
+      <h2 class="heading" lang="zh">不只談 AI，我每天在用自己做的 agent</h2>
+      <h2 class="heading" lang="en">Not just talking about AI — I run my own agents daily</h2>
+      <p class="ai-intro" lang="zh">
+        具備技術底子的 PM，親手打造並每日使用 <strong>AI agent 系統</strong>。可擔任 AI 顧問，協助團隊評估與導入 AI agent、自動化流程與治理機制。
+      </p>
+      <p class="ai-intro" lang="en">
+        A PM with a technical foundation who builds — and uses every day — his own <strong>AI agent systems</strong>.
+        Available as an AI consultant to help teams evaluate and adopt AI agents, automation workflows,
+        and governance mechanisms.
+      </p>
+
+      <div class="ai-grid">
+
+        <!-- AI Agent Team -->
+        <article class="ai-card">
+          <div class="ai-card-head">
+            <h3 class="ai-card-title"><span lang="zh">AI Agent 團隊（2026）</span><span lang="en">AI Agent Team (2026)</span></h3>
+            <span class="tl-period"><span lang="zh">多 agent 系統</span><span lang="en">Multi-agent system</span></span>
+          </div>
+          <div class="ai-card-desc" lang="zh">
+            <p>以 Claude Code 打造 <strong>24/7 常駐</strong>的個人 AI 團隊。一個 PM agent 負責理解需求、拆解任務、派工與驗收，指揮 <strong>12 個專職 subagent</strong>（後端、前端、QA、code reviewer、researcher、summarizer、reporter 等）。</p>
+            <p>自建任務看板（Jira 式，含 audit log 與 token 追蹤）、Obsidian vault 作為知識庫（session 洞見升格為 wiki）、Discord 經 MCP 收發訊息、crontab 排程 pipeline（每日投資研究報告、每日自省、週報），並以 hooks 作為治理護欄——Evidence Contract：agent 的說法是推斷，diff／output 才是事實。</p>
+          </div>
+          <div class="ai-card-desc" lang="en">
+            <p>A <strong>24/7 always-on</strong> personal AI team built on Claude Code. One PM agent understands requirements, breaks them into tasks, dispatches work, and verifies results, directing <strong>12 specialized subagents</strong> (backend, frontend, QA, code reviewer, researcher, summarizer, reporter, and more).</p>
+            <p>Self-built task board (Jira-style, with audit log and token tracking), an Obsidian vault as knowledge base (session insights promoted to wiki pages), Discord messaging via MCP, crontab-scheduled pipelines (daily investment research reports, daily retrospective, weekly report), and hooks as governance guardrails — the Evidence Contract: what an agent says is inference; the diff and output are the facts.</p>
+          </div>
+          <div class="tl-tags">
+            <span class="tl-tag">Claude Code</span>
+            <span class="tl-tag">MCP</span>
+            <span class="tl-tag">Python / Flask</span>
+            <span class="tl-tag">Bash</span>
+            <span class="tl-tag">crontab / tmux</span>
+            <span class="tl-tag">Obsidian</span>
+          </div>
+        </article>
+
+        <!-- Guama voice bot -->
+        <article class="ai-card">
+          <div class="ai-card-head">
+            <h3 class="ai-card-title"><span lang="zh">呱馬 Discord 語音 bot</span><span lang="en">Guama — Discord Voice Bot</span></h3>
+            <span class="tl-period"><span lang="zh">語音 bot</span><span lang="en">Voice bot</span></span>
+          </div>
+          <div class="ai-card-desc" lang="zh">
+            <p>在 Discord 語音頻道以<strong>喚醒詞</strong>觸發的問答機器人。本地 Whisper 語音辨識、edge-tts 語音合成（零 API 費），後端接 Claude 回答。</p>
+            <p>具 <strong>9 種可熱切換的人格模式</strong>、用量額度閘門，以 launchd 常駐並由 watchdog 自癒。</p>
+          </div>
+          <div class="ai-card-desc" lang="en">
+            <p>A <strong>wake-word</strong> triggered Q&amp;A bot for Discord voice channels. Local Whisper speech recognition and edge-tts speech synthesis (zero API cost), with Claude answering on the backend.</p>
+            <p><strong>Nine hot-swappable persona modes</strong>, a usage quota gate, and an always-on launchd service with watchdog self-healing.</p>
+          </div>
+          <div class="tl-tags">
+            <span class="tl-tag">Node.js</span>
+            <span class="tl-tag">discord.js / @discordjs/voice</span>
+            <span class="tl-tag">Whisper</span>
+            <span class="tl-tag">edge-tts</span>
+          </div>
+        </article>
+
+        <!-- AI mini tools -->
+        <article class="ai-card ai-card-wide">
+          <div class="ai-card-head">
+            <h3 class="ai-card-title"><span lang="zh">AI 小工具</span><span lang="en">AI Mini Tools</span></h3>
+            <span class="tl-period"><span lang="zh">小工具</span><span lang="en">Tools</span></span>
+          </div>
+          <div class="ai-tools">
+
+            <div class="ai-tool">
+              <div class="ai-tool-name">Fan Comment Scraper</div>
+              <div class="ai-card-desc" lang="zh">
+                <p>Claude Code 工具，輸入產品關鍵字即自動爬取 12 個平台（PTT、Dcard、Mobile01、蝦皮、momo、PChome、YouTube、IG、Threads、FB、X 等）的真實用戶留言，輸出含來源 URL 的 Excel，供市場情報使用。</p>
+              </div>
+              <div class="ai-card-desc" lang="en">
+                <p>A Claude Code tool that takes a product keyword and automatically collects real user comments from 12 platforms (including PTT, Dcard, Mobile01, Shopee, momo, PChome, YouTube, IG, Threads, FB, and X), exporting an Excel file with source URLs for market intelligence.</p>
+              </div>
+              <div class="tl-tags">
+                <span class="tl-tag">Claude Code skills</span>
+                <span class="tl-tag">Python</span>
+              </div>
+            </div>
+
+            <div class="ai-tool">
+              <div class="ai-tool-name">
+                <a href="https://github.com/siang86121900/mc-zh-tw-translator" target="_blank" rel="noopener noreferrer">MC Translator ↗</a>
+                <small>mc-zh-tw-translator</small>
+              </div>
+              <div class="ai-card-desc" lang="zh">
+                <p>把 Minecraft 模組包（模組、任務、Patchouli 書本、KubeJS、設定檔）翻成<strong>台灣用語繁體中文</strong>的桌面工具，Python 開發、發佈為 Windows 免安裝 exe。</p>
+                <p>譯文來源分 10 層依序查找：模組自帶繁中／簡中 → 模組包內中文 → ModsTranslationPack／CFPA 參考庫 → 跨版本 CFPA → 翻譯記憶 → 自訂譯名 → 官方原版譯名 → 內建術語表 → 最後才選用 AI 補翻；簡中以 OpenCC 轉台灣用語。自動排除遊戲不會顯示的文字；逐筆檢查參數、格式碼、換行一致才採用；套用前自動備份原檔、可還原；譯名不一致偵測與推薦。</p>
+              </div>
+              <div class="ai-card-desc" lang="en">
+                <p>A desktop tool that translates Minecraft modpacks (mods, quests, Patchouli books, KubeJS, config files) into <strong>Traditional Chinese with Taiwanese terminology</strong>; written in Python and shipped as a portable Windows exe.</p>
+                <p>Translations are resolved through a 10-tier source chain: a mod&rsquo;s own zh-TW / zh-CN → Chinese already inside the modpack → ModsTranslationPack / CFPA reference libraries → cross-version CFPA → translation memory → custom glossary → official vanilla names → built-in terminology → optional AI fill-in as the last resort; Simplified Chinese is converted to Taiwanese usage via OpenCC. Skips text the game never displays; accepts each entry only if placeholders, format codes, and line breaks match; backs up originals before applying and can restore them; detects inconsistent term translations and recommends fixes.</p>
+              </div>
+              <div class="tl-tags">
+                <span class="tl-tag">Python</span>
+                <span class="tl-tag">OpenCC</span>
+              </div>
+            </div>
+
+            <div class="ai-tool">
+              <div class="ai-tool-name"><span lang="zh">個人網站製作 Agent</span><span lang="en">Personal Website Builder Agent</span></div>
+              <div class="ai-card-desc" lang="zh">
+                <p>以 prompt 定義的小工具，用來製作個人網站。</p>
+              </div>
+              <div class="ai-card-desc" lang="en">
+                <p>A prompt-defined mini tool for building a personal website.</p>
+              </div>
+              <div class="tl-tags">
+                <span class="tl-tag">Claude Code skills</span>
+              </div>
+            </div>
+
+          </div>
+        </article>
+
+      </div>
+
+      <a href="#gogo" class="ai-more">
+        <span lang="zh">另見 GoGo →</span>
+        <span lang="en">See also GoGo →</span>
+      </a>
+    </div>
+  </section>
+
   <!-- ===== GOGO ===== -->
   <section id="gogo">
     <div class="container">
       <span class="label">
-        <span lang="zh">04 &mdash; 個人專案</span>
-        <span lang="en">04 &mdash; Side Project</span>
+        <span lang="zh">05 &mdash; 個人專案</span>
+        <span lang="en">05 &mdash; Side Project</span>
       </span>
 
       <div class="gogo-top">
@@ -1337,8 +1587,8 @@
   <section id="contact">
     <div class="container">
       <span class="label">
-        <span lang="zh">05 &mdash; 聯絡</span>
-        <span lang="en">05 &mdash; Contact</span>
+        <span lang="zh">06 &mdash; 聯絡</span>
+        <span lang="en">06 &mdash; Contact</span>
       </span>
       <h2 class="contact-heading" lang="zh">一起打造<br>好產品。</h2>
       <h2 class="contact-heading" lang="en">Let's build<br>something.</h2>
