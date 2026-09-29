@@ -26,14 +26,13 @@
       --amber-bg:    rgba(217,119,6,0.12);
       --amber-fade:  rgba(217,119,6,0.3);
       --green:       #059669;
-      /* Works band (dark navy: same hue family as --accent, deeper and calmer) */
+      /* GoGo main-case block (dark navy: same hue family as --accent, deeper and calmer) */
       --works-bg:          #0D2449;
       --works-bg-top:      #123063;
       --works-bg-bottom:   #0A1B38;
       --works-ink:         #F3F6FC;
       --works-ink-60:      rgba(243,246,252,0.74);
       --works-ink-40:      rgba(243,246,252,0.56);
-      --works-surface:     rgba(255,255,255,0.05);
       --works-surface-2:   rgba(255,255,255,0.09);
       --works-line:        rgba(255,255,255,0.12);
       --works-accent:      #93B4FF;
@@ -889,80 +888,54 @@
     }
     .tech-chip:hover { border-color: var(--accent); color: var(--accent); }
 
-    /* ===== WORKS (full-bleed dark band: GoGo main case + AI cards) ===== */
-    #works {
-      background: linear-gradient(180deg,
-        var(--works-bg-top) 0%, var(--works-bg) 180px,
-        var(--works-bg) calc(100% - 180px), var(--works-bg-bottom) 100%);
-      color: var(--works-ink);
-      padding: calc(var(--py) + 16px) 0;
-    }
-    #works .label { color: var(--works-accent); }
-    #works .label::before { background: var(--works-accent); }
-    #works .heading { color: var(--works-ink); }
-    #works .ai-intro { color: var(--works-ink-60); }
-    #works .ai-intro strong { color: var(--works-ink); }
-
+    /* ===== WORKS (GoGo main case on a dark navy block + AI cards on the page background) ===== */
     .works-kicker {
       font-size: 10px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.12em;
-      color: var(--works-ink-40);
+      color: var(--ink-30);
       margin-bottom: 20px;
     }
     .works-kicker-ai { margin-top: 80px; }
 
-    /* Main case block (keeps id="gogo" as the anchor target) */
+    /* Main case block: the only dark element in the section (keeps id="gogo" as the anchor target) */
     .works-case {
       margin-top: 24px;
       padding: 44px 48px;
-      background: var(--works-surface);
+      color: var(--works-ink);
+      background: linear-gradient(180deg, var(--works-bg-top) 0%, var(--works-bg) 45%, var(--works-bg-bottom) 100%);
       border: 1px solid var(--works-line);
       border-radius: 20px;
+      box-shadow: 0 24px 60px rgba(13,36,73,0.18);
       scroll-margin-top: 84px;
     }
-    #works .gogo-tech-groups { margin-bottom: 0; }
-    #works .gogo-display { color: var(--works-ink); }
-    #works .gogo-sub { color: var(--works-ink-60); }
-    #works .gogo-founder { color: var(--works-ink-40); }
-    #works .gogo-section-title { color: var(--works-ink-40); }
-    #works .gogo-num {
+    .works-case .works-kicker { color: var(--works-ink-40); }
+    .works-case .gogo-tech-groups { margin-bottom: 0; }
+    .works-case .gogo-display { color: var(--works-ink); }
+    .works-case .gogo-sub { color: var(--works-ink-60); }
+    .works-case .gogo-founder { color: var(--works-ink-40); }
+    .works-case .gogo-section-title { color: var(--works-ink-40); }
+    .works-case .gogo-num {
       color: var(--works-accent);
       background: var(--works-accent-bg);
       border-color: var(--works-accent-fade);
     }
-    #works .gogo-feat:hover .gogo-num { background: var(--works-accent); color: var(--works-bg); }
-    #works .gogo-feat-title { color: var(--works-ink); }
-    #works .gogo-feat-desc { color: var(--works-ink-60); }
-    #works .gogo-tech-cat { color: var(--works-ink-40); }
-    #works .tech-chip {
+    .works-case .gogo-feat:hover .gogo-num { background: var(--works-accent); color: var(--works-bg); }
+    .works-case .gogo-feat-title { color: var(--works-ink); }
+    .works-case .gogo-feat-desc { color: var(--works-ink-60); }
+    .works-case .gogo-tech-cat { color: var(--works-ink-40); }
+    .works-case .tech-chip {
       color: var(--works-ink-60);
       background: var(--works-surface-2);
       border-color: var(--works-line);
     }
-    #works .tech-chip:hover { border-color: var(--works-accent); color: var(--works-accent); }
-    #works .tl-period {
+    .works-case .tech-chip:hover { border-color: var(--works-accent); color: var(--works-accent); }
+    .works-case .tl-period {
       color: var(--works-ink-60);
       background: var(--works-surface-2);
       border-color: var(--works-line);
     }
-
-    /* AI cards on the dark band */
-    #works .ai-card { background: var(--works-surface); border-color: var(--works-line); }
-    #works .ai-card:hover { border-color: var(--works-accent-fade); box-shadow: 0 12px 32px rgba(0,0,0,0.28); }
-    #works .ai-card-title { color: var(--works-ink); }
-    #works .ai-card-desc { color: var(--works-ink-60); }
-    #works .ai-card-desc strong { color: var(--works-ink); }
-    #works .tl-tag { color: var(--works-accent); background: var(--works-accent-bg); }
-    #works .tl-tag:hover { background: var(--works-accent); color: var(--works-bg); }
-    #works .ai-tool { border-top-color: var(--works-line); }
-    #works .ai-tool-name { color: var(--works-ink); }
-    #works .ai-tool-name a { color: var(--works-accent); border-bottom-color: var(--works-accent-fade); }
-    #works .ai-tool-name a:hover { border-bottom-color: var(--works-accent); }
-    #works .ai-tool-name small { color: var(--works-ink-40); }
-    #works .ai-more { color: var(--works-accent); border-bottom-color: var(--works-accent-fade); }
-    #works .ai-more:hover { border-bottom-color: var(--works-accent); }
 
     /* ===== SERVICES ===== */
     .svc-intro {
