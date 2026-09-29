@@ -55,6 +55,11 @@
     html[data-lang="en"] [data-show="zh"] { display: none; }
     html[data-lang="zh"] [data-show="en"] { display: none; }
 
+    /* Chinese line breaking: keep words intact — wrap only at punctuation / spaces
+       (keep-all is a no-op for Latin text). `anywhere` is the overflow fallback so a
+       single long clause can never push the layout wider than the viewport. */
+    [lang="zh"] { word-break: keep-all; overflow-wrap: anywhere; }
+
     .container {
       max-width: var(--max);
       margin: 0 auto;
