@@ -1070,6 +1070,7 @@
         align-items: flex-start;
       }
       .hero-grid { grid-template-columns: 1fr; gap: 0; }
+      .hero-bio br { display: none; } /* #1316: 兩句在窄螢幕接排，避免 br 造成孤行 */
       .hero-photo-col {
         order: -1;
         max-width: 260px;
@@ -1165,12 +1166,10 @@
             at the intersection of AdTech, Data &amp; AI
           </p>
           <p class="hero-bio" lang="zh">
-            具備技術背景的 PM——從廣告追蹤框架到 GCP data pipeline，我都親手交付。現在我在 VMFive 主導 AdTech 平台，同時以創辦人兼 CEO 的身分帶領 GoGo，一個 AI 旅遊新創。
+            具備技術背景的 PM，從廣告追蹤框架到 GCP data pipeline 都親手交付過。<br>現在我在 VMFive 主導 AdTech 平台，同時以創辦人兼 CEO 的身分帶領 GoGo，一個 AI 旅遊新創。
           </p>
           <p class="hero-bio" lang="en">
-            PM with a technical foundation — I've shipped everything from ad tracking frameworks
-            to GCP data pipelines. Today I run the AdTech platform at VMFive and lead GoGo,
-            an AI travel startup, as Founder and CEO.
+            PM with a technical foundation. I've shipped everything from ad tracking frameworks to GCP data pipelines.<br>Today I run the AdTech platform at VMFive and lead GoGo, an AI travel startup, as Founder and CEO.
           </p>
           <div class="hero-actions">
             <a href="#experience" class="btn btn-dark">
@@ -1228,28 +1227,28 @@
         <div class="about-body">
           <div lang="zh">
             <p>
-              我從<strong>前端工程師</strong>起步，走過應用工程（FAE）、資料工程，進入產品管理，清楚產品在每一層會怎麼壞掉。
+              我從<strong>前端工程師</strong>起步，做過應用工程（FAE）與資料工程，再進入產品管理。每一層都親手做過，所以我能直接判斷，一個產品在技術上做不做得到。
             </p>
             <p>
               現在在 <strong>VMFive</strong> 主導 AdTech 產品：日處理逾百萬次曝光的 SSP/DSP 平台，和 RD、資料、商務團隊一起推動真正影響成效的功能。
             </p>
             <p>
-              工作之外，我以<strong>創辦人兼 CEO</strong> 的身分帶領 GoGo——一個 AI 旅遊新創，從產品定義、系統架構到組建十人團隊都由我主導。
+              工作之外，我創辦並帶領 AI 旅遊新創 GoGo，從產品定義、系統架構到十人團隊都由我主導。
             </p>
           </div>
           <div lang="en">
             <p>
-              I started as a <strong>front-end developer</strong>, moved through field application
-              engineering and data engineering into product management — so I know how products
-              break at every layer of the stack.
+              I started as a <strong>front-end engineer</strong>, moved through field application
+              engineering and data engineering, then into product management. Having built every
+              layer myself, I can tell right away whether a product is technically feasible.
             </p>
             <p>
               Today I own AdTech at <strong>VMFive</strong> — an SSP/DSP platform handling over a million
               daily ad impressions — working with RD, data, and commercial teams on features that move real numbers.
             </p>
             <p>
-              Outside of work, I lead GoGo, an AI travel startup, as <strong>Founder &amp; CEO</strong> —
-              owning product definition, system architecture, and a ten-person team.
+              Outside of work, I founded and lead GoGo, an AI travel startup, owning everything
+              from product definition and system architecture to a ten-person team.
             </p>
           </div>
         </div>
@@ -1674,11 +1673,11 @@
           </div>
           <div class="ai-card-desc" lang="zh">
             <p>用 Claude Code 打造 <strong>24/7 常駐</strong>的個人 AI 團隊：一個 PM agent 拆解任務、派工、驗收，指揮 <strong>12 個專職 subagent</strong>；我在外面用 Discord 傳一句話，就能派它做事。</p>
-            <p>自建任務看板、AI 自動維護的 Obsidian 知識庫、crontab 排程 pipeline，並以 hooks 當治理護欄——agent 說的是推斷，diff／output 才是事實。</p>
+            <p>自建任務看板、AI 自動維護的 Obsidian 知識庫、定時自動執行的 pipeline，並以 hooks 當治理護欄：agent 的說法要有 diff 或輸出當證據。</p>
           </div>
           <div class="ai-card-desc" lang="en">
             <p>A <strong>24/7 always-on</strong> personal AI team built on Claude Code: one PM agent breaks down tasks, delegates, and verifies, directing <strong>12 specialized subagents</strong>; from anywhere, one Discord message puts it to work.</p>
-            <p>Self-built task board, an Obsidian knowledge base maintained by AI, crontab-scheduled pipelines, and hooks as governance guardrails &mdash; what an agent says is inference; the diff and output are the facts.</p>
+            <p>Self-built task board, an Obsidian knowledge base maintained by AI, pipelines that run on a schedule, and hooks as governance guardrails: whatever an agent claims has to be backed by a diff or actual output.</p>
           </div>
           <div class="tl-tags">
             <span class="tl-tag">Claude Code</span>
@@ -1698,11 +1697,11 @@
           </div>
           <div class="ai-card-desc" lang="zh">
             <p>每個交易日盤前自動產出投資研究報告，推送到 Discord。</p>
-            <p>多來源財經新聞去重、Podcast 新集摘要、技術指標（均線、RSI、MACD）與法人籌碼、多因子篩選與回測校準，輸出 Markdown／PDF。</p>
+            <p>多來源財經新聞去重、Podcast 新集摘要、技術指標（均線、RSI、MACD）與法人籌碼，再用多條件篩選出操作建議，並保存紀錄、事後驗證準確度，輸出 Markdown／PDF。</p>
           </div>
           <div class="ai-card-desc" lang="en">
             <p>Before every trading session, a scheduled pipeline produces an investment research report and pushes it to Discord.</p>
-            <p>Multi-source news deduplication, new podcast episode summaries, technical indicators (moving averages, RSI, MACD) and institutional flows, multi-factor screening and backtest calibration &mdash; rendered to Markdown/PDF.</p>
+            <p>Multi-source news deduplication, new podcast episode summaries, technical indicators (moving averages, RSI, MACD) and institutional flows, then screens for actionable calls against multiple conditions and keeps records to verify accuracy afterwards &mdash; rendered to Markdown/PDF.</p>
           </div>
           <div class="tl-tags">
             <span class="tl-tag">Claude Code</span>
@@ -1721,11 +1720,11 @@
           </div>
           <div class="ai-card-desc" lang="zh">
             <p>在 Discord 語音頻道用<strong>喚醒詞</strong>就能問答的機器人，伺服器所有成員都能用，文字頻道 @ 它也會回、白名單頻道自動接話。</p>
-            <p>本地 Whisper 語音辨識＋edge-tts 語音合成（零 API 費）、Claude 回答，<strong>9 種可熱切換的人格模式</strong>，launchd 常駐、watchdog 自癒。</p>
+            <p>本地 Whisper 語音辨識＋edge-tts 語音合成（零 API 費）、Claude 回答，<strong>9 種人格隨時切換、不用重啟</strong>，24 小時常駐、掛掉自動重啟。</p>
           </div>
           <div class="ai-card-desc" lang="en">
             <p>A <strong>wake-word</strong> Q&amp;A bot for Discord voice channels, open to every member of the server; it also answers @-mentions in text channels and auto-replies in allowlisted channels.</p>
-            <p>Local Whisper speech recognition + edge-tts synthesis (zero API cost) with Claude answering, <strong>nine hot-swappable persona modes</strong>, always-on via launchd with watchdog self-healing.</p>
+            <p>Local Whisper speech recognition + edge-tts synthesis (zero API cost) with Claude answering, <strong>nine persona modes you can switch anytime without a restart</strong>, running 24/7 and restarting itself if it ever crashes.</p>
           </div>
           <div class="tl-tags">
             <span class="tl-tag">Node.js</span>
@@ -1838,7 +1837,7 @@
         <article class="svc-card svc-card-wide">
           <div class="svc-num">01</div>
           <h3 class="svc-title"><span lang="zh">AI agent 與自動化流程導入顧問</span><span lang="en">AI Agent &amp; Automation Consulting</span></h3>
-          <p class="svc-desc" lang="zh">評估與導入 <strong>Claude Code 多 agent 團隊</strong>、MCP、排程 pipeline 與治理護欄——系統我親手打造、每日使用。</p>
+          <p class="svc-desc" lang="zh">評估與導入 <strong>Claude Code 多 agent 團隊</strong>、MCP、排程 pipeline 與治理護欄，這套系統我親手打造、每日使用。</p>
           <p class="svc-desc" lang="en">Evaluate and roll out <strong>Claude Code multi-agent teams</strong>, MCP, scheduled pipelines, and governance guardrails — the same system I built and use daily.</p>
         </article>
 
