@@ -26,6 +26,19 @@
       --amber-bg:    rgba(217,119,6,0.12);
       --amber-fade:  rgba(217,119,6,0.3);
       --green:       #059669;
+      /* Works band (dark navy: same hue family as --accent, deeper and calmer) */
+      --works-bg:          #0D2449;
+      --works-bg-top:      #123063;
+      --works-bg-bottom:   #0A1B38;
+      --works-ink:         #F3F6FC;
+      --works-ink-60:      rgba(243,246,252,0.74);
+      --works-ink-40:      rgba(243,246,252,0.56);
+      --works-surface:     rgba(255,255,255,0.05);
+      --works-surface-2:   rgba(255,255,255,0.09);
+      --works-line:        rgba(255,255,255,0.12);
+      --works-accent:      #93B4FF;
+      --works-accent-bg:   rgba(147,180,255,0.12);
+      --works-accent-fade: rgba(147,180,255,0.35);
       --font:        -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
       --mono:        "SF Mono", "Fira Code", "Consolas", "Courier New", monospace;
       --r:           8px;
@@ -752,14 +765,7 @@
     }
     .ai-more:hover { border-color: var(--accent); }
 
-    /* ===== GOGO ===== */
-    #gogo {
-      background: var(--bg-2);
-      padding: var(--py) 0;
-    }
-    #gogo .label { color: var(--accent); }
-    #gogo .label::before { background: var(--accent); }
-
+    /* ===== GOGO (main case inside #works) ===== */
     .gogo-top {
       display: grid;
       grid-template-columns: 1fr auto;
@@ -883,6 +889,80 @@
     }
     .tech-chip:hover { border-color: var(--accent); color: var(--accent); }
 
+    /* ===== WORKS (full-bleed dark band: GoGo main case + AI cards) ===== */
+    #works {
+      background: linear-gradient(180deg,
+        var(--works-bg-top) 0%, var(--works-bg) 180px,
+        var(--works-bg) calc(100% - 180px), var(--works-bg-bottom) 100%);
+      color: var(--works-ink);
+      padding: calc(var(--py) + 16px) 0;
+    }
+    #works .label { color: var(--works-accent); }
+    #works .label::before { background: var(--works-accent); }
+    #works .heading { color: var(--works-ink); }
+    #works .ai-intro { color: var(--works-ink-60); }
+    #works .ai-intro strong { color: var(--works-ink); }
+
+    .works-kicker {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--works-ink-40);
+      margin-bottom: 20px;
+    }
+    .works-kicker-ai { margin-top: 80px; }
+
+    /* Main case block (keeps id="gogo" as the anchor target) */
+    .works-case {
+      margin-top: 24px;
+      padding: 44px 48px;
+      background: var(--works-surface);
+      border: 1px solid var(--works-line);
+      border-radius: 20px;
+      scroll-margin-top: 84px;
+    }
+    #works .gogo-tech-groups { margin-bottom: 0; }
+    #works .gogo-display { color: var(--works-ink); }
+    #works .gogo-sub { color: var(--works-ink-60); }
+    #works .gogo-founder { color: var(--works-ink-40); }
+    #works .gogo-section-title { color: var(--works-ink-40); }
+    #works .gogo-num {
+      color: var(--works-accent);
+      background: var(--works-accent-bg);
+      border-color: var(--works-accent-fade);
+    }
+    #works .gogo-feat:hover .gogo-num { background: var(--works-accent); color: var(--works-bg); }
+    #works .gogo-feat-title { color: var(--works-ink); }
+    #works .gogo-feat-desc { color: var(--works-ink-60); }
+    #works .gogo-tech-cat { color: var(--works-ink-40); }
+    #works .tech-chip {
+      color: var(--works-ink-60);
+      background: var(--works-surface-2);
+      border-color: var(--works-line);
+    }
+    #works .tech-chip:hover { border-color: var(--works-accent); color: var(--works-accent); }
+    #works .tl-period {
+      color: var(--works-ink-60);
+      background: var(--works-surface-2);
+      border-color: var(--works-line);
+    }
+
+    /* AI cards on the dark band */
+    #works .ai-card { background: var(--works-surface); border-color: var(--works-line); }
+    #works .ai-card:hover { border-color: var(--works-accent-fade); box-shadow: 0 12px 32px rgba(0,0,0,0.28); }
+    #works .ai-card-title { color: var(--works-ink); }
+    #works .ai-card-desc { color: var(--works-ink-60); }
+    #works .ai-card-desc strong { color: var(--works-ink); }
+    #works .tl-tag { color: var(--works-accent); background: var(--works-accent-bg); }
+    #works .tl-tag:hover { background: var(--works-accent); color: var(--works-bg); }
+    #works .ai-tool { border-top-color: var(--works-line); }
+    #works .ai-tool-name { color: var(--works-ink); }
+    #works .ai-tool-name a { color: var(--works-accent); border-bottom-color: var(--works-accent-fade); }
+    #works .ai-tool-name a:hover { border-bottom-color: var(--works-accent); }
+    #works .ai-tool-name small { color: var(--works-ink-40); }
+    #works .ai-more { color: var(--works-accent); border-bottom-color: var(--works-accent-fade); }
+    #works .ai-more:hover { border-bottom-color: var(--works-accent); }
 
     /* ===== SERVICES ===== */
     .svc-intro {
@@ -1059,6 +1139,9 @@
 
       .ai-tools { grid-template-columns: 1fr; }
 
+      .works-case { padding: 28px 22px; border-radius: 16px; }
+      .works-kicker-ai { margin-top: 56px; }
+
       .gogo-top { grid-template-columns: 1fr; }
       .gogo-tech-group { flex-direction: column; gap: 8px; }
       .gogo-tech-cat { min-width: auto; padding-top: 0; }
@@ -1083,8 +1166,7 @@
         <li><a href="#about"><span lang="zh">關於</span><span lang="en">About</span></a></li>
         <li><a href="#skills"><span lang="zh">技能</span><span lang="en">Skills</span></a></li>
         <li><a href="#experience"><span lang="zh">經歷</span><span lang="en">Experience</span></a></li>
-        <li><a href="#ai"><span lang="zh">AI 實作</span><span lang="en">AI in Practice</span></a></li>
-        <li><a href="#gogo">GoGo</a></li>
+        <li><a href="#works"><span lang="zh">作品</span><span lang="en">Work</span></a></li>
         <li><a href="#services"><span lang="zh">服務</span><span lang="en">Services</span></a></li>
       </ul>
       <div class="nav-right">
@@ -1105,8 +1187,7 @@
       <a href="#about"><span lang="zh">關於</span><span lang="en">About</span></a>
       <a href="#skills"><span lang="zh">技能</span><span lang="en">Skills</span></a>
       <a href="#experience"><span lang="zh">經歷</span><span lang="en">Experience</span></a>
-      <a href="#ai"><span lang="zh">AI 實作</span><span lang="en">AI in Practice</span></a>
-      <a href="#gogo">GoGo</a>
+      <a href="#works"><span lang="zh">作品</span><span lang="en">Work</span></a>
       <a href="#services"><span lang="zh">服務</span><span lang="en">Services</span></a>
       <a href="#contact"><span lang="zh">聯絡我</span><span lang="en">Get in touch</span></a>
     </div>
@@ -1520,13 +1601,116 @@
     </div>
   </section>
 
-  <!-- ===== AI IN PRACTICE ===== -->
-  <section id="ai">
+  <!-- ===== WORKS: GoGo main case + AI in practice ===== -->
+  <section id="works">
     <div class="container">
       <span class="label">
-        <span lang="zh">04 &mdash; AI 實作</span>
-        <span lang="en">04 &mdash; AI in Practice</span>
+        <span lang="zh">04 &mdash; 作品</span>
+        <span lang="en">04 &mdash; Work</span>
       </span>
+
+      <!-- Main case: GoGo (anchor target for hero / "See also GoGo" links) -->
+      <div class="works-case" id="gogo">
+        <div class="works-kicker"><span lang="zh">個人專案</span><span lang="en">Side Project</span></div>
+
+        <div class="gogo-top">
+          <div>
+            <div class="gogo-title-row">
+              <h2 class="gogo-display">GoGo</h2>
+              <span class="tl-period"><span lang="zh">AI 旅遊規劃 App</span><span lang="en">AI travel-planning app</span></span>
+              <span class="tl-period"><span lang="zh">持續更新中</span><span lang="en">Actively maintained</span></span>
+            </div>
+            <div class="gogo-sub" lang="zh">&ldquo;靈感不再只是收藏，而是你的下一趟旅程&rdquo;</div>
+            <div class="gogo-sub" lang="en">&ldquo;Turn inspiration into your next journey&rdquo;</div>
+          </div>
+          <div>
+            <div class="gogo-founder" lang="zh">創辦人兼 CEO<br>十人團隊・2025</div>
+            <div class="gogo-founder" lang="en">Founder &amp; CEO<br>10-person team &middot; 2025</div>
+          </div>
+        </div>
+
+        <div class="gogo-body">
+
+          <!-- Features -->
+          <div>
+            <div class="gogo-section-title"><span lang="zh">核心功能</span><span lang="en">Core Features</span></div>
+            <div class="gogo-features">
+              <div class="gogo-feat">
+                <div class="gogo-num">01</div>
+                <div>
+                  <div class="gogo-feat-title"><span lang="zh">AI 智慧排行程</span><span lang="en">AI Itinerary Planning</span></div>
+                  <div class="gogo-feat-desc" lang="zh">AI 智選景點並最佳化多目標路線（時間、距離、交通方式並行考量）</div>
+                  <div class="gogo-feat-desc" lang="en">AI curates destinations and optimizes routes across multiple objectives — time, distance, and transportation mode.</div>
+                </div>
+              </div>
+              <div class="gogo-feat">
+                <div class="gogo-num">02</div>
+                <div>
+                  <div class="gogo-feat-title"><span lang="zh">第三方收藏一鍵匯入</span><span lang="en">One-tap Import from Anywhere</span></div>
+                  <div class="gogo-feat-desc" lang="zh">從 Google Maps、Instagram、小紅書或截圖一鍵匯入已收藏景點。AI 辨識截圖或圖片，自動生成語意標籤</div>
+                  <div class="gogo-feat-desc" lang="en">Pull saved places from Google Maps, Instagram, Xiaohongshu, or screenshots. AI reads images and auto-generates semantic tags.</div>
+                </div>
+              </div>
+              <div class="gogo-feat">
+                <div class="gogo-num">03</div>
+                <div>
+                  <div class="gogo-feat-title"><span lang="zh">滑動配對景點</span><span lang="en">Tinder-style Spot Discovery</span></div>
+                  <div class="gogo-feat-desc" lang="zh">左滑右滑探索景點，推薦引擎持續學習你的旅行偏好</div>
+                  <div class="gogo-feat-desc" lang="en">Swipe to discover places. A recommendation engine learns your travel taste over time.</div>
+                </div>
+              </div>
+              <div class="gogo-feat">
+                <div class="gogo-num">04</div>
+                <div>
+                  <div class="gogo-feat-title"><span lang="zh">個人化旅遊小書</span><span lang="en">Personalized Travel Booklet</span></div>
+                  <div class="gogo-feat-desc" lang="zh">根據最終行程自動生成精美的旅遊小書，隨時分享</div>
+                  <div class="gogo-feat-desc" lang="en">Auto-generates a shareable, beautifully laid-out travel booklet from your final itinerary.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="gogo-section-title" style="margin-bottom:16px"><span lang="zh">技術棧</span><span lang="en">Tech Stack</span></div>
+        <div class="gogo-tech-groups">
+          <div class="gogo-tech-group">
+            <span class="gogo-tech-cat">App</span>
+            <div class="gogo-tech-row">
+              <span class="tech-chip">React Native</span>
+              <span class="tech-chip">TypeScript</span>
+              <span class="tech-chip">Kotlin</span>
+              <span class="tech-chip">Swift</span>
+            </div>
+          </div>
+          <div class="gogo-tech-group">
+            <span class="gogo-tech-cat">Backend</span>
+            <div class="gogo-tech-row">
+              <span class="tech-chip">Go</span>
+              <span class="tech-chip">PostgreSQL</span>
+              <span class="tech-chip">Docker</span>
+            </div>
+          </div>
+          <div class="gogo-tech-group">
+            <span class="gogo-tech-cat">AI / Data</span>
+            <div class="gogo-tech-row">
+              <span class="tech-chip">Python</span>
+              <span class="tech-chip">Gemini API</span>
+              <span class="tech-chip">MCP Servers</span>
+              <span class="tech-chip">Google Maps Scraper</span>
+            </div>
+          </div>
+          <div class="gogo-tech-group">
+            <span class="gogo-tech-cat">Infra</span>
+            <div class="gogo-tech-row">
+              <span class="tech-chip">Terraform</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI in practice -->
+      <div class="works-kicker works-kicker-ai"><span lang="zh">AI 實作</span><span lang="en">AI in Practice</span></div>
       <h2 class="heading" lang="zh">不只談 AI，我每天在用自己做的 agent</h2>
       <h2 class="heading" lang="en">Not just talking about AI — I run my own agents daily</h2>
       <p class="ai-intro" lang="zh">
@@ -1697,117 +1881,12 @@
     </div>
   </section>
 
-  <!-- ===== GOGO ===== -->
-  <section id="gogo">
-    <div class="container">
-      <span class="label">
-        <span lang="zh">05 &mdash; 個人專案</span>
-        <span lang="en">05 &mdash; Side Project</span>
-      </span>
-
-      <div class="gogo-top">
-        <div>
-          <div class="gogo-title-row">
-            <h2 class="gogo-display">GoGo</h2>
-            <span class="tl-period"><span lang="zh">持續更新中</span><span lang="en">Actively maintained</span></span>
-          </div>
-          <div class="gogo-sub" lang="zh">&ldquo;靈感不再只是收藏，而是你的下一趟旅程&rdquo;</div>
-          <div class="gogo-sub" lang="en">&ldquo;Turn inspiration into your next journey&rdquo;</div>
-        </div>
-        <div>
-          <div class="gogo-founder" lang="zh">創辦人兼 CEO<br>十人團隊・2025</div>
-          <div class="gogo-founder" lang="en">Founder &amp; CEO<br>10-person team &middot; 2025</div>
-        </div>
-      </div>
-
-      <div class="gogo-body">
-
-        <!-- Features -->
-        <div>
-          <div class="gogo-section-title"><span lang="zh">核心功能</span><span lang="en">Core Features</span></div>
-          <div class="gogo-features">
-            <div class="gogo-feat">
-              <div class="gogo-num">01</div>
-              <div>
-                <div class="gogo-feat-title"><span lang="zh">AI 智慧排行程</span><span lang="en">AI Itinerary Planning</span></div>
-                <div class="gogo-feat-desc" lang="zh">AI 智選景點並最佳化多目標路線（時間、距離、交通方式並行考量）</div>
-                <div class="gogo-feat-desc" lang="en">AI curates destinations and optimizes routes across multiple objectives — time, distance, and transportation mode.</div>
-              </div>
-            </div>
-            <div class="gogo-feat">
-              <div class="gogo-num">02</div>
-              <div>
-                <div class="gogo-feat-title"><span lang="zh">第三方收藏一鍵匯入</span><span lang="en">One-tap Import from Anywhere</span></div>
-                <div class="gogo-feat-desc" lang="zh">從 Google Maps、Instagram、小紅書或截圖一鍵匯入已收藏景點。AI 辨識截圖或圖片，自動生成語意標籤</div>
-                <div class="gogo-feat-desc" lang="en">Pull saved places from Google Maps, Instagram, Xiaohongshu, or screenshots. AI reads images and auto-generates semantic tags.</div>
-              </div>
-            </div>
-            <div class="gogo-feat">
-              <div class="gogo-num">03</div>
-              <div>
-                <div class="gogo-feat-title"><span lang="zh">滑動配對景點</span><span lang="en">Tinder-style Spot Discovery</span></div>
-                <div class="gogo-feat-desc" lang="zh">左滑右滑探索景點，推薦引擎持續學習你的旅行偏好</div>
-                <div class="gogo-feat-desc" lang="en">Swipe to discover places. A recommendation engine learns your travel taste over time.</div>
-              </div>
-            </div>
-            <div class="gogo-feat">
-              <div class="gogo-num">04</div>
-              <div>
-                <div class="gogo-feat-title"><span lang="zh">個人化旅遊小書</span><span lang="en">Personalized Travel Booklet</span></div>
-                <div class="gogo-feat-desc" lang="zh">根據最終行程自動生成精美的旅遊小書，隨時分享</div>
-                <div class="gogo-feat-desc" lang="en">Auto-generates a shareable, beautifully laid-out travel booklet from your final itinerary.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="gogo-section-title" style="margin-bottom:16px"><span lang="zh">技術棧</span><span lang="en">Tech Stack</span></div>
-      <div class="gogo-tech-groups">
-        <div class="gogo-tech-group">
-          <span class="gogo-tech-cat">App</span>
-          <div class="gogo-tech-row">
-            <span class="tech-chip">React Native</span>
-            <span class="tech-chip">TypeScript</span>
-            <span class="tech-chip">Kotlin</span>
-            <span class="tech-chip">Swift</span>
-          </div>
-        </div>
-        <div class="gogo-tech-group">
-          <span class="gogo-tech-cat">Backend</span>
-          <div class="gogo-tech-row">
-            <span class="tech-chip">Go</span>
-            <span class="tech-chip">PostgreSQL</span>
-            <span class="tech-chip">Docker</span>
-          </div>
-        </div>
-        <div class="gogo-tech-group">
-          <span class="gogo-tech-cat">AI / Data</span>
-          <div class="gogo-tech-row">
-            <span class="tech-chip">Python</span>
-            <span class="tech-chip">Gemini API</span>
-            <span class="tech-chip">MCP Servers</span>
-            <span class="tech-chip">Google Maps Scraper</span>
-          </div>
-        </div>
-        <div class="gogo-tech-group">
-          <span class="gogo-tech-cat">Infra</span>
-          <div class="gogo-tech-row">
-            <span class="tech-chip">Terraform</span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
   <!-- ===== SERVICES ===== -->
   <section id="services">
     <div class="container">
       <span class="label">
-        <span lang="zh">06 &mdash; 服務</span>
-        <span lang="en">06 &mdash; Services</span>
+        <span lang="zh">05 &mdash; 服務</span>
+        <span lang="en">05 &mdash; Services</span>
       </span>
       <h2 class="heading" lang="zh">接案與顧問合作</h2>
       <h2 class="heading" lang="en">Freelance &amp; consulting</h2>
@@ -1874,8 +1953,8 @@
   <section id="contact">
     <div class="container">
       <span class="label">
-        <span lang="zh">07 &mdash; 聯絡</span>
-        <span lang="en">07 &mdash; Contact</span>
+        <span lang="zh">06 &mdash; 聯絡</span>
+        <span lang="en">06 &mdash; Contact</span>
       </span>
       <h2 class="contact-heading" lang="zh">一起打造<br>好產品。</h2>
       <h2 class="contact-heading" lang="en">Let's build<br>something.</h2>
