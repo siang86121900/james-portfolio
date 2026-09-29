@@ -697,7 +697,7 @@
 
     .ai-tools {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 20px;
       margin-top: 6px;
     }
@@ -1153,12 +1153,16 @@
           </div>
           <div class="hero-stats">
             <div class="stat">
-              <div class="stat-num">5</div>
+              <div class="stat-num">5+</div>
               <div class="stat-lbl"><span lang="zh">年資</span><span lang="en">Years Exp.</span></div>
             </div>
             <div class="stat">
               <div class="stat-num">10</div>
               <div class="stat-lbl"><span lang="zh">人團隊</span><span lang="en">Person Team</span></div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">12</div>
+              <div class="stat-lbl"><span lang="zh">AI agents 親手打造</span><span lang="en">AI Agents Built</span></div>
             </div>
           </div>
         </div>
@@ -1532,11 +1536,11 @@
           </div>
           <div class="ai-card-desc" lang="zh">
             <p>以 Claude Code 打造 <strong>24/7 常駐</strong>的個人 AI 團隊。一個 PM agent 負責理解需求、拆解任務、派工與驗收，指揮 <strong>12 個專職 subagent</strong>（後端、前端、QA、code reviewer、researcher、summarizer、reporter 等）。</p>
-            <p>自建任務看板（Jira 式，含 audit log 與 token 追蹤）、Obsidian vault 作為知識庫（session 洞見升格為 wiki）、Discord 經 MCP 收發訊息、crontab 排程 pipeline（每日投資研究報告、每日自省、週報），並以 hooks 作為治理護欄——Evidence Contract：agent 的說法是推斷，diff／output 才是事實。</p>
+            <p>自建任務看板（Jira 式，含 audit log 與 token 追蹤）、Obsidian 知識庫由 AI 自動維護：文章與 Podcast 摘要存檔、對話洞見升格 wiki、定期巡邏孤立筆記、Discord 經 MCP 收發訊息、crontab 排程 pipeline（每日投資研究報告、每日自省、週報），並以 hooks 作為治理護欄——Evidence Contract：agent 的說法是推斷，diff／output 才是事實。</p>
           </div>
           <div class="ai-card-desc" lang="en">
             <p>A <strong>24/7 always-on</strong> personal AI team built on Claude Code. One PM agent understands requirements, breaks them into tasks, dispatches work, and verifies results, directing <strong>12 specialized subagents</strong> (backend, frontend, QA, code reviewer, researcher, summarizer, reporter, and more).</p>
-            <p>Self-built task board (Jira-style, with audit log and token tracking), an Obsidian vault as knowledge base (session insights promoted to wiki pages), Discord messaging via MCP, crontab-scheduled pipelines (daily investment research reports, daily retrospective, weekly report), and hooks as governance guardrails — the Evidence Contract: what an agent says is inference; the diff and output are the facts.</p>
+            <p>Self-built task board (Jira-style, with audit log and token tracking), an Obsidian knowledge base maintained by AI: article and podcast summaries archived, session insights promoted to wiki pages, and periodic patrols for orphan notes, Discord messaging via MCP, crontab-scheduled pipelines (daily investment research reports, daily retrospective, weekly report), and hooks as governance guardrails — the Evidence Contract: what an agent says is inference; the diff and output are the facts.</p>
           </div>
           <div class="tl-tags">
             <span class="tl-tag">Claude Code</span>
@@ -1621,6 +1625,22 @@
               </div>
               <div class="tl-tags">
                 <span class="tl-tag">Claude Code skills</span>
+              </div>
+            </div>
+
+            <div class="ai-tool">
+              <div class="ai-tool-name">
+                <a href="tools/drink-ledger.html" target="_blank" rel="noopener noreferrer"><span lang="zh">飲料團購扣款本 ↗</span><span lang="en">Drink Group-Buy Ledger ↗</span></a>
+              </div>
+              <div class="ai-card-desc" lang="zh">
+                <p>用 AI 工具做出來的辦公室小應用：同事預收儲值、逐杯或整批扣款、上傳截圖以 OCR 辨識人名後扣款、復原上一筆、流水帳與匯出 CSV。純前端單檔，資料只存在使用者瀏覽器。</p>
+              </div>
+              <div class="ai-card-desc" lang="en">
+                <p>An office mini app built with AI tools: colleagues pre-pay a balance, charges are deducted per cup or in batches, uploaded screenshots are OCR-scanned to recognize names before charging, the last entry can be undone, with a running ledger and CSV export. A single-file, front-end-only page &mdash; data lives only in the user&rsquo;s browser.</p>
+              </div>
+              <div class="tl-tags">
+                <span class="tl-tag">Vanilla JS</span>
+                <span class="tl-tag">Tesseract.js (OCR)</span>
               </div>
             </div>
 

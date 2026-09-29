@@ -1,0 +1,1891 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>飲料團購扣款本</title>
+  <style>
+    :root {
+      --paper: #f7f2e8;
+      --ink: #29231d;
+      --muted: #776f65;
+      --line: #ddd1bf;
+      --tea: #0f7c72;
+      --tea-dark: #09554f;
+      --cane: #f2b84b;
+      --rose: #cb5a4a;
+      --mint: #dff2ec;
+      --white: #fffdfa;
+      --shadow: 0 18px 45px rgba(66, 48, 27, .13);
+      --radius: 8px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        linear-gradient(90deg, rgba(15,124,114,.08) 1px, transparent 1px) 0 0 / 32px 32px,
+        linear-gradient(180deg, rgba(15,124,114,.05) 1px, transparent 1px) 0 0 / 32px 32px,
+        var(--paper);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+    }
+
+    button, input, select {
+      font: inherit;
+    }
+
+    button {
+      border: 0;
+      cursor: pointer;
+    }
+
+    button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+      outline: 3px solid rgba(15, 124, 114, .28);
+      outline-offset: 2px;
+    }
+
+    .app {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 24px 0 40px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 10px 0 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .mark {
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      color: var(--white);
+      background: var(--tea);
+      display: grid;
+      place-items: center;
+      box-shadow: 5px 5px 0 var(--cane);
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(24px, 4vw, 42px);
+      line-height: 1;
+      letter-spacing: 0;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    .today {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: minmax(260px, 370px) minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .grid > *,
+    .stack,
+    .panel,
+    form,
+    label,
+    .row {
+      min-width: 0;
+    }
+
+    .panel {
+      background: rgba(255, 253, 250, .88);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 16px 10px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 17px;
+      line-height: 1.2;
+    }
+
+    .subtle {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .stack {
+      display: grid;
+      gap: 14px;
+    }
+
+    form {
+      display: grid;
+      gap: 10px;
+      padding: 16px;
+    }
+
+    label {
+      display: grid;
+      gap: 5px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    input, select {
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      padding: 10px 11px;
+      color: var(--ink);
+      background: var(--white);
+    }
+
+    textarea {
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      min-height: 132px;
+      resize: vertical;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      padding: 10px 11px;
+      color: var(--ink);
+      background: var(--white);
+      line-height: 1.45;
+      font: inherit;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .check-row {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--ink);
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      padding: 10px 11px;
+      background: rgba(223, 242, 236, .34);
+    }
+
+    .check-row input {
+      width: 18px;
+      height: 18px;
+      flex: 0 0 auto;
+      accent-color: var(--tea);
+    }
+
+    .check-row span {
+      display: grid;
+      gap: 2px;
+      font-size: 13px;
+      line-height: 1.3;
+    }
+
+    .check-row small {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap;
+      padding-top: 2px;
+    }
+
+    .btn {
+      min-height: 38px;
+      border-radius: 7px;
+      padding: 0 13px;
+      color: var(--white);
+      background: var(--tea);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      font-weight: 700;
+    }
+
+    .btn:hover { background: var(--tea-dark); }
+
+    .btn:disabled {
+      cursor: not-allowed;
+      opacity: .52;
+    }
+
+    .btn.secondary {
+      color: var(--tea-dark);
+      background: var(--mint);
+    }
+
+    .btn.secondary:hover {
+      background: #cfe9e1;
+    }
+
+    .btn.warn {
+      color: var(--white);
+      background: var(--rose);
+    }
+
+    .btn.icon {
+      width: 38px;
+      padding: 0;
+      flex: 0 0 auto;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .stat {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 14px;
+      min-width: 0;
+    }
+
+    .stat span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 7px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: clamp(22px, 4vw, 34px);
+      line-height: 1;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    .ledger {
+      overflow: hidden;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    th, td {
+      padding: 12px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: middle;
+      overflow-wrap: anywhere;
+    }
+
+    th {
+      color: var(--muted);
+      background: rgba(223, 242, 236, .45);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+
+    .money {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .hint {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .dropzone {
+      display: grid;
+      gap: 8px;
+      place-items: center;
+      min-height: 118px;
+      border: 1px dashed rgba(15, 124, 114, .42);
+      border-radius: 8px;
+      padding: 14px;
+      color: var(--muted);
+      background: rgba(223, 242, 236, .38);
+      text-align: center;
+    }
+
+    .dropzone.dragging {
+      border-color: var(--tea);
+      background: rgba(223, 242, 236, .8);
+    }
+
+    .dropzone strong {
+      color: var(--ink);
+      font-size: 14px;
+    }
+
+    .image-preview {
+      display: none;
+      width: 100%;
+      max-height: 180px;
+      object-fit: contain;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: var(--white);
+    }
+
+    .image-preview.show {
+      display: block;
+    }
+
+    .preview {
+      display: grid;
+      gap: 8px;
+      padding: 0 16px 16px;
+    }
+
+    .preview-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      padding: 9px 10px;
+      background: var(--white);
+      font-size: 13px;
+    }
+
+    .preview-row.bad {
+      border-color: rgba(203, 90, 74, .45);
+      background: rgba(203, 90, 74, .08);
+    }
+
+    .preview-main {
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .assignments {
+      display: none;
+      gap: 8px;
+      padding: 0 16px 16px;
+    }
+
+    .assignments.show {
+      display: grid;
+    }
+
+    .assign-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 82px;
+      gap: 8px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      padding: 9px;
+      background: var(--white);
+    }
+
+    .assign-row .hint {
+      grid-column: 1 / -1;
+    }
+
+    .assign-row select {
+      grid-column: 1 / -1;
+    }
+
+    .assign-row input[data-assign-field="drink"] {
+      grid-column: 1;
+    }
+
+    .assign-row input[data-assign-field="baseAmount"] {
+      grid-column: 2;
+    }
+
+    .assign-row input,
+    .assign-row select {
+      min-width: 0;
+    }
+
+    .assign-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .balance-good { color: var(--tea-dark); font-weight: 800; }
+    .balance-bad { color: var(--rose); font-weight: 800; }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      border-radius: 999px;
+      padding: 0 9px;
+      color: var(--tea-dark);
+      background: var(--mint);
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .receipt {
+      position: relative;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .receipt::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 10px;
+      background: repeating-linear-gradient(90deg, var(--cane) 0 12px, transparent 12px 24px);
+      opacity: .9;
+    }
+
+    .receipt-body {
+      padding: 22px 16px 14px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .log {
+      max-height: 310px;
+      overflow: auto;
+    }
+
+    .log-filter {
+      display: grid;
+      grid-template-columns: minmax(150px, 220px) minmax(140px, 190px) 1fr;
+      gap: 10px;
+      align-items: end;
+      padding-top: 2px;
+    }
+
+    .log-summary {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .mini-stat {
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      padding: 8px 10px;
+      background: rgba(223, 242, 236, .28);
+      min-width: 0;
+    }
+
+    .mini-stat span {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      margin-bottom: 4px;
+    }
+
+    .mini-stat strong {
+      display: block;
+      font-size: 15px;
+      line-height: 1.15;
+      overflow-wrap: anywhere;
+    }
+
+    .log-item {
+      display: grid;
+      grid-template-columns: 88px 1fr auto;
+      gap: 10px;
+      padding: 10px 16px;
+      border-top: 1px solid var(--line);
+      align-items: baseline;
+      font-size: 13px;
+    }
+
+    .log-time {
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .empty {
+      padding: 18px 16px;
+      color: var(--muted);
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 20px;
+      transform: translateX(-50%) translateY(18px);
+      opacity: 0;
+      pointer-events: none;
+      background: var(--ink);
+      color: var(--white);
+      border-radius: 8px;
+      padding: 10px 14px;
+      box-shadow: var(--shadow);
+      transition: .18s ease;
+      z-index: 10;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (max-width: 840px) {
+      .app { width: min(100% - 20px, 680px); padding-top: 14px; }
+      .topbar { align-items: flex-start; flex-direction: column; }
+      .grid { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: 1fr; }
+      .row { grid-template-columns: 1fr; }
+      .ledger { overflow: hidden; }
+      table, tbody, tr, td { display: block; width: 100%; }
+      table { table-layout: auto; }
+      thead { display: none; }
+      tbody tr {
+        padding: 12px 14px;
+        border-bottom: 1px solid var(--line);
+      }
+      tbody tr:last-child { border-bottom: 0; }
+      td {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        border-bottom: 0;
+        padding: 7px 0;
+      }
+      td::before {
+        content: attr(data-label);
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 800;
+      }
+      td:first-child::before, td:last-child::before { display: none; }
+      td:first-child {
+        font-size: 18px;
+        padding-bottom: 10px;
+      }
+      td:last-child {
+        justify-content: flex-end;
+        padding-top: 10px;
+      }
+      .log-item { grid-template-columns: 74px 1fr; }
+      .log-item .money { grid-column: 2; text-align: left; }
+      .log-filter { grid-template-columns: 1fr; }
+      .log-summary { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .toast { transition: none; }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="mark" aria-hidden="true">飲</div>
+        <div>
+          <h1>飲料團購扣款本</h1>
+          <div class="subtle">預收金先放著，今天喝什麼就慢慢扣。</div>
+        </div>
+      </div>
+      <div class="today" id="todayLabel"></div>
+    </header>
+
+    <section class="stats" aria-label="總覽">
+      <div class="stat">
+        <span>目前預收餘額</span>
+        <strong id="totalBalance">$0</strong>
+      </div>
+      <div class="stat">
+        <span>今日已扣</span>
+        <strong id="todaySpend">$0</strong>
+      </div>
+      <div class="stat">
+        <span>欠款人數</span>
+        <strong id="debtCount">0</strong>
+      </div>
+    </section>
+
+    <div class="grid">
+      <aside class="stack" aria-label="輸入區">
+        <section class="panel">
+          <div class="panel-header">
+            <h2>新增同事</h2>
+            <span class="pill">名單</span>
+          </div>
+          <form id="memberForm">
+            <label>
+              姓名
+              <input id="memberName" autocomplete="off" placeholder="例如：小美" required>
+            </label>
+            <label>
+              初始預收金
+              <input id="memberInitial" type="number" inputmode="numeric" min="0" step="1" placeholder="0">
+            </label>
+            <button class="btn" type="submit">+ 加入</button>
+          </form>
+        </section>
+
+        <section class="panel">
+          <div class="panel-header">
+            <h2>收錢儲值</h2>
+            <span class="pill">加值</span>
+          </div>
+          <form id="depositForm">
+            <label>
+              誰給你錢
+              <select id="depositMember" required></select>
+            </label>
+            <div class="row">
+              <label>
+                金額
+                <input id="depositAmount" type="number" inputmode="numeric" min="1" step="1" placeholder="500" required>
+              </label>
+              <label>
+                備註
+                <input id="depositNote" autocomplete="off" placeholder="現金 / 轉帳">
+              </label>
+            </div>
+            <button class="btn" type="submit">+ 記一筆預收</button>
+          </form>
+        </section>
+
+        <section class="panel">
+          <div class="panel-header">
+            <h2>確認付款</h2>
+            <span class="pill">補登</span>
+          </div>
+          <form id="orderForm">
+            <label>
+              誰的飲料
+              <select id="orderMember" required></select>
+            </label>
+            <div class="row">
+              <label>
+                飲料
+                <input id="orderItem" autocomplete="off" placeholder="珍奶微糖去冰" required>
+              </label>
+              <label>
+                價格
+                <input id="orderAmount" type="number" inputmode="numeric" min="1" step="1" placeholder="65" required>
+              </label>
+            </div>
+            <div class="row">
+              <label>
+                訂購方式
+                <select id="orderSource">
+                  <option value="Uber Eats">Uber Eats</option>
+                  <option value="手動代訂">手動代訂</option>
+                  <option value="店家自取">店家自取</option>
+                  <option value="其他">其他</option>
+                </select>
+              </label>
+              <label>
+                外送分攤 / 折扣
+                <input id="orderExtra" type="number" inputmode="numeric" step="1" placeholder="0">
+              </label>
+            </div>
+            <label class="check-row">
+              <input id="orderPaidNow" type="checkbox" checked>
+              <span>
+                現付這杯
+                <small>確認最近一筆已扣訂單為現付，不再新增一筆。</small>
+              </span>
+            </label>
+            <button class="btn warn" id="orderSubmitBtn" type="submit">- 扣飲料錢</button>
+          </form>
+        </section>
+
+        <section class="panel">
+          <div class="panel-header">
+            <h2>整批貼上扣款</h2>
+            <span class="pill">批次</span>
+          </div>
+          <form id="bulkForm">
+            <div class="dropzone" id="imageDrop">
+              <strong>丟圖片或貼截圖解析</strong>
+              <span class="hint" id="ocrStatus">支援外送訂單截圖；辨識後先讓你對人名。</span>
+              <img class="image-preview" id="imagePreview" alt="訂單圖片預覽">
+              <input id="imageInput" type="file" accept="image/*" hidden>
+              <button class="btn secondary" id="imagePickBtn" type="button">選圖片</button>
+            </div>
+            <div class="assignments" id="imageOrders"></div>
+            <label>
+              訂單清單
+              <textarea id="bulkText" placeholder="小美 珍奶微糖去冰 65&#10;阿傑, 青茶無糖, 35&#10;Ivy&#9;紅茶拿鐵&#9;70"></textarea>
+            </label>
+            <div class="row">
+              <label>
+                訂購方式
+                <select id="bulkSource">
+                  <option value="Uber Eats">Uber Eats</option>
+                  <option value="手動代訂">手動代訂</option>
+                  <option value="店家自取">店家自取</option>
+                  <option value="其他">其他</option>
+                </select>
+              </label>
+              <label>
+                外送費 / 折扣總額
+                <input id="bulkExtraTotal" type="number" inputmode="numeric" step="1" placeholder="例如 80 或 -50">
+              </label>
+            </div>
+            <div class="hint">每行格式：姓名 飲料 價格。外送費會平均分到每個人，折扣填負數。</div>
+            <button class="btn warn" id="bulkSubmitBtn" type="submit">- 整批扣款</button>
+          </form>
+          <div class="preview" id="bulkPreview"></div>
+        </section>
+      </aside>
+
+      <section class="stack">
+        <section class="panel ledger">
+          <div class="panel-header">
+            <div>
+              <h2>大家的餘額</h2>
+              <div class="subtle">負數就是還要補給你。</div>
+            </div>
+            <div class="actions">
+              <button class="btn secondary" id="exportBtn" type="button">匯出 CSV</button>
+              <button class="btn secondary" id="sampleBtn" type="button">放範例</button>
+            </div>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th style="width: 28%">姓名</th>
+                <th style="width: 20%" class="money">餘額</th>
+                <th style="width: 28%">最近一杯</th>
+                <th style="width: 16%" class="money">今日扣款</th>
+                <th style="width: 8%"></th>
+              </tr>
+            </thead>
+            <tbody id="memberRows"></tbody>
+          </table>
+          <div class="empty" id="emptyMembers">先加一個同事，今天的團購就可以開跑。</div>
+        </section>
+
+        <section class="receipt">
+          <div class="receipt-body">
+            <div class="panel-header" style="padding: 0 0 10px; border-bottom: 1px dashed var(--line);">
+              <div>
+                <h2>流水帳</h2>
+                <div class="subtle">預收、扣款、刪除都會留下紀錄。</div>
+              </div>
+              <div class="actions">
+                <button class="btn secondary" id="undoBtn" type="button">復原上一筆</button>
+                <button class="btn secondary" id="undoTodayBtn" type="button">清掉今天紀錄</button>
+                <button class="btn secondary" id="clearLogBtn" type="button">清空紀錄</button>
+              </div>
+            </div>
+            <div class="log-filter">
+              <label>
+                看誰的紀錄
+                <select id="logMemberFilter">
+                  <option value="all">全部</option>
+                </select>
+              </label>
+              <label>
+                月份
+                <select id="logMonthFilter">
+                  <option value="all">全部月份</option>
+                </select>
+              </label>
+              <div class="log-summary" id="logSummary"></div>
+            </div>
+          </div>
+          <div class="log" id="logList"></div>
+        </section>
+      </section>
+    </div>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const storageKey = "drink-ledger-v1";
+    const undoStorageKey = "drink-ledger-undo-v1";
+    const money = new Intl.NumberFormat("zh-TW", { style: "currency", currency: "TWD", maximumFractionDigits: 0 });
+    const dateKey = localDateKey(new Date());
+
+    const els = {
+      todayLabel: document.getElementById("todayLabel"),
+      totalBalance: document.getElementById("totalBalance"),
+      todaySpend: document.getElementById("todaySpend"),
+      debtCount: document.getElementById("debtCount"),
+      memberRows: document.getElementById("memberRows"),
+      emptyMembers: document.getElementById("emptyMembers"),
+      memberForm: document.getElementById("memberForm"),
+      memberName: document.getElementById("memberName"),
+      memberInitial: document.getElementById("memberInitial"),
+      depositForm: document.getElementById("depositForm"),
+      depositMember: document.getElementById("depositMember"),
+      depositAmount: document.getElementById("depositAmount"),
+      depositNote: document.getElementById("depositNote"),
+      orderForm: document.getElementById("orderForm"),
+      orderMember: document.getElementById("orderMember"),
+      orderItem: document.getElementById("orderItem"),
+      orderAmount: document.getElementById("orderAmount"),
+      orderSource: document.getElementById("orderSource"),
+      orderExtra: document.getElementById("orderExtra"),
+      orderPaidNow: document.getElementById("orderPaidNow"),
+      orderSubmitBtn: document.getElementById("orderSubmitBtn"),
+      bulkForm: document.getElementById("bulkForm"),
+      bulkText: document.getElementById("bulkText"),
+      bulkSource: document.getElementById("bulkSource"),
+      bulkExtraTotal: document.getElementById("bulkExtraTotal"),
+      bulkSubmitBtn: document.getElementById("bulkSubmitBtn"),
+      bulkPreview: document.getElementById("bulkPreview"),
+      imageDrop: document.getElementById("imageDrop"),
+      imageInput: document.getElementById("imageInput"),
+      imagePickBtn: document.getElementById("imagePickBtn"),
+      imagePreview: document.getElementById("imagePreview"),
+      imageOrders: document.getElementById("imageOrders"),
+      ocrStatus: document.getElementById("ocrStatus"),
+      logMemberFilter: document.getElementById("logMemberFilter"),
+      logMonthFilter: document.getElementById("logMonthFilter"),
+      logSummary: document.getElementById("logSummary"),
+      logList: document.getElementById("logList"),
+      exportBtn: document.getElementById("exportBtn"),
+      sampleBtn: document.getElementById("sampleBtn"),
+      undoBtn: document.getElementById("undoBtn"),
+      undoTodayBtn: document.getElementById("undoTodayBtn"),
+      clearLogBtn: document.getElementById("clearLogBtn"),
+      toast: document.getElementById("toast")
+    };
+
+    let state = loadState();
+    let undoStack = loadUndoStack();
+    let stagedImageOrders = [];
+
+    function loadState() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(storageKey));
+        if (saved && Array.isArray(saved.members) && Array.isArray(saved.transactions)) return repairLoadedState(saved);
+      } catch (error) {}
+      return { members: [], transactions: [] };
+    }
+
+    function saveState() {
+      localStorage.setItem(storageKey, JSON.stringify(state));
+    }
+
+    function repairLoadedState(saved) {
+      let changed = false;
+      saved.transactions = saved.transactions.map((tx) => {
+        if (tx.type !== "order" || tx.amount === 0) return tx;
+        const baseAmount = Number(tx.baseAmount || 0);
+        const extra = Number(tx.extra || 0);
+        const chargedAmount = Math.abs(Number(tx.amount || 0));
+        const cost = chargedAmount || baseAmount + extra;
+        if (!isLikelyTenfoldOcrAmount(cost)) return tx;
+        changed = true;
+        const fixedCost = Math.round(cost / 10);
+        return {
+          ...tx,
+          amount: tx.amount < 0 ? -fixedCost : fixedCost,
+          baseAmount: fixedCost,
+          extra: 0,
+          note: tx.note || "飲料"
+        };
+      });
+      if (changed) {
+        localStorage.setItem(undoStorageKey, JSON.stringify([{
+          label: "自動修正 500 類錯帳",
+          state: JSON.parse(localStorage.getItem(storageKey)),
+          createdAt: new Date().toISOString()
+        }]));
+        localStorage.setItem(storageKey, JSON.stringify(saved));
+      }
+      return saved;
+    }
+
+    function localDateKey(date) {
+      const parsed = date instanceof Date ? date : new Date(date);
+      if (Number.isNaN(parsed.getTime())) return "";
+      const year = parsed.getFullYear();
+      const month = String(parsed.getMonth() + 1).padStart(2, "0");
+      const day = String(parsed.getDate()).padStart(2, "0");
+      return `${year}-${month}-${day}`;
+    }
+
+    function loadUndoStack() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(undoStorageKey));
+        if (Array.isArray(saved)) return saved;
+      } catch (error) {}
+      return [];
+    }
+
+    function saveUndoStack() {
+      localStorage.setItem(undoStorageKey, JSON.stringify(undoStack));
+    }
+
+    function cloneState() {
+      return JSON.parse(JSON.stringify(state));
+    }
+
+    function rememberUndo(label) {
+      undoStack.push({
+        label,
+        state: cloneState(),
+        createdAt: new Date().toISOString()
+      });
+      undoStack = undoStack.slice(-20);
+      saveUndoStack();
+    }
+
+    function undoLast() {
+      const snapshot = undoStack.pop();
+      if (!snapshot) {
+        toast("沒有可復原的動作");
+        return;
+      }
+      state = snapshot.state;
+      stagedImageOrders = [];
+      saveUndoStack();
+      saveState();
+      render();
+      toast(`已復原：${snapshot.label}`);
+    }
+
+    function id() {
+      return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+    }
+
+    function amountFrom(input) {
+      return parseMoneyValue(input.value);
+    }
+
+    function parseMoneyValue(value) {
+      const normalized = String(value || "")
+        .normalize("NFKC")
+        .replace(/,/g, "")
+        .trim();
+      const match = normalized.match(/-?\d+(?:\.\d{1,2})?/);
+      return match ? Math.round(Number(match[0])) : 0;
+    }
+
+    function isSuspiciousDrinkAmount(amount) {
+      return amount > 250;
+    }
+
+    function isLikelyTenfoldOcrAmount(amount) {
+      return Number.isFinite(amount) && amount >= 300 && amount <= 2500 && amount % 10 === 0 && amount / 10 <= 250;
+    }
+
+    function memberBalance(memberId) {
+      return state.transactions
+        .filter((tx) => tx.memberId === memberId)
+        .reduce((sum, tx) => sum + tx.amount, 0);
+    }
+
+    function orderCost(tx) {
+      if (tx.type !== "order") return 0;
+      if (Number.isFinite(tx.baseAmount)) return tx.baseAmount + (tx.extra || 0);
+      return Math.abs(tx.amount || 0);
+    }
+
+    function memberTodaySpend(memberId) {
+      return state.transactions
+        .filter((tx) => tx.memberId === memberId && tx.type === "order" && isTodayTransaction(tx))
+        .reduce((sum, tx) => sum + orderCost(tx), 0);
+    }
+
+    function isTodayTransaction(tx) {
+      return tx.date === dateKey || localDateKey(tx.createdAt) === dateKey;
+    }
+
+    function latestOrder(memberId) {
+      return [...state.transactions]
+        .reverse()
+        .find((tx) => tx.memberId === memberId && tx.type === "order");
+    }
+
+    function latestUnpaidOrder(memberId) {
+      return [...state.transactions]
+        .reverse()
+        .find((tx) => tx.memberId === memberId && tx.type === "order" && !tx.paidNow && tx.amount < 0);
+    }
+
+    function findOrderToMarkPaid(memberId, item, amount) {
+      const candidates = [...state.transactions]
+        .reverse()
+        .filter((tx) => tx.memberId === memberId && tx.type === "order" && !tx.paidNow && tx.amount < 0);
+      return candidates.find((tx) => cleanDrinkName(tx.note) === cleanDrinkName(item) && orderCost(tx) === amount) || candidates[0];
+    }
+
+    function orderLabel(tx) {
+      if (tx.type !== "order") return tx.note || "";
+      const source = tx.source ? ` · ${tx.source}` : "";
+      const extra = tx.extra ? ` · ${tx.extra > 0 ? "+" : ""}${money.format(tx.extra)} 分攤` : "";
+      const paid = tx.paidNow ? " · 現付" : "";
+      return `${tx.note || "飲料"}${source}${extra}${paid}`;
+    }
+
+    function addTransaction(tx) {
+      state.transactions.push({
+        id: id(),
+        date: dateKey,
+        createdAt: new Date().toISOString(),
+        ...tx
+      });
+      saveState();
+      render();
+    }
+
+    function toast(text) {
+      els.toast.textContent = text;
+      els.toast.classList.add("show");
+      clearTimeout(toast.timer);
+      toast.timer = setTimeout(() => els.toast.classList.remove("show"), 1800);
+    }
+
+    function render() {
+      els.todayLabel.textContent = new Intl.DateTimeFormat("zh-TW", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        weekday: "long"
+      }).format(new Date());
+
+      const options = state.members
+        .map((member) => `<option value="${member.id}">${escapeHtml(member.name)}</option>`)
+        .join("");
+      const selectedDepositMember = els.depositMember.value;
+      const selectedOrderMember = els.orderMember.value;
+      els.depositMember.innerHTML = options;
+      els.orderMember.innerHTML = options;
+      if (state.members.some((member) => member.id === selectedDepositMember)) els.depositMember.value = selectedDepositMember;
+      if (state.members.some((member) => member.id === selectedOrderMember)) els.orderMember.value = selectedOrderMember;
+      const selectedLogMember = els.logMemberFilter.value || "all";
+      els.logMemberFilter.innerHTML = `<option value="all">全部</option>${options}`;
+      els.logMemberFilter.value = selectedLogMember === "all" || state.members.some((member) => member.id === selectedLogMember)
+        ? selectedLogMember
+        : "all";
+      const selectedLogMonth = els.logMonthFilter.value || monthKey(dateKey);
+      const monthOptions = availableMonths();
+      els.logMonthFilter.innerHTML = `<option value="all">全部月份</option>${monthOptions.map((value) => `<option value="${value}">${monthLabel(value)}</option>`).join("")}`;
+      els.logMonthFilter.value = selectedLogMonth === "all" || monthOptions.includes(selectedLogMonth)
+        ? selectedLogMonth
+        : monthKey(dateKey);
+      els.depositForm.querySelector("button").disabled = state.members.length === 0;
+      els.orderForm.querySelector("button").disabled = state.members.length === 0;
+      els.bulkSubmitBtn.disabled = state.members.length === 0;
+      els.undoBtn.disabled = undoStack.length === 0;
+      els.undoTodayBtn.disabled = !state.transactions.some(isTodayTransaction);
+      renderImageOrders();
+      updateOrderButtonMode();
+      if (els.orderPaidNow.checked) fillRecentOrderForMember();
+
+      const balances = state.members.map((member) => memberBalance(member.id));
+      els.totalBalance.textContent = money.format(balances.reduce((sum, value) => sum + value, 0));
+      els.todaySpend.textContent = money.format(state.transactions
+        .filter((tx) => tx.type === "order" && isTodayTransaction(tx))
+        .reduce((sum, tx) => sum + orderCost(tx), 0));
+      els.debtCount.textContent = balances.filter((value) => value < 0).length;
+
+      els.emptyMembers.hidden = state.members.length > 0;
+      els.memberRows.innerHTML = state.members.map((member) => {
+        const balance = memberBalance(member.id);
+        const recent = latestOrder(member.id);
+        const todaySpend = memberTodaySpend(member.id);
+        const balanceClass = balance < 0 ? "balance-bad" : "balance-good";
+        return `
+          <tr>
+            <td data-label="姓名"><strong>${escapeHtml(member.name)}</strong></td>
+            <td data-label="餘額" class="money ${balanceClass}">${money.format(balance)}</td>
+            <td data-label="最近一杯">${recent ? escapeHtml(orderLabel(recent)) : '<span class="subtle">還沒點</span>'}</td>
+            <td data-label="今日扣款" class="money">${todaySpend ? money.format(todaySpend) : "-"}</td>
+            <td data-label="操作" class="money"><button class="btn icon secondary" type="button" title="刪除成員" onclick="removeMember('${member.id}')">x</button></td>
+          </tr>
+        `;
+      }).join("");
+
+      renderLogSummary();
+      const visibleTransactions = filteredLogTransactions();
+
+      if (visibleTransactions.length === 0) {
+        els.logList.innerHTML = `<div class="empty">還沒有紀錄。收到錢或扣飲料錢後會出現在這裡。</div>`;
+      } else {
+        els.logList.innerHTML = [...visibleTransactions].reverse().map((tx) => {
+          const member = state.members.find((item) => item.id === tx.memberId);
+          const when = new Intl.DateTimeFormat("zh-TW", { month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" }).format(new Date(tx.createdAt));
+          const label = tx.type === "deposit" ? "預收" : "扣款";
+          const displayAmount = tx.type === "order" ? -orderCost(tx) : tx.amount;
+          const cls = displayAmount < 0 ? "balance-bad" : "balance-good";
+          return `
+            <div class="log-item">
+              <div class="log-time">${when}</div>
+          <div><strong>${escapeHtml(member ? member.name : "已刪除")}</strong> ${label}${tx.note ? `：${escapeHtml(orderLabel(tx))}` : ""}</div>
+              <div class="money ${cls}">${money.format(displayAmount)}</div>
+            </div>
+          `;
+        }).join("");
+      }
+    }
+
+    function renderLogSummary() {
+      const memberId = els.logMemberFilter.value;
+      const scoped = filteredLogTransactions();
+      const drinkTotal = scoped.filter((tx) => tx.type === "order").reduce((sum, tx) => sum + orderCost(tx), 0);
+      const depositTotal = scoped.filter((tx) => tx.type === "deposit").reduce((sum, tx) => sum + tx.amount, 0);
+      const cupCount = scoped.filter((tx) => tx.type === "order").length;
+      const balance = scoped.reduce((sum, tx) => sum + tx.amount, 0);
+      els.logSummary.innerHTML = `
+        <div class="mini-stat"><span>喝了</span><strong>${money.format(drinkTotal)}</strong></div>
+        <div class="mini-stat"><span>預收</span><strong>${money.format(depositTotal)}</strong></div>
+        <div class="mini-stat"><span>篩選小計</span><strong>${money.format(balance)}</strong></div>
+        <div class="mini-stat"><span>杯數</span><strong>${cupCount}</strong></div>
+      `;
+    }
+
+    function filteredLogTransactions() {
+      const memberId = els.logMemberFilter.value;
+      const selectedMonth = els.logMonthFilter.value;
+      return state.transactions.filter((tx) => {
+        const memberMatches = memberId === "all" || tx.memberId === memberId;
+        const monthMatches = selectedMonth === "all" || monthKey(tx.date || tx.createdAt) === selectedMonth;
+        return memberMatches && monthMatches;
+      });
+    }
+
+    function monthKey(value) {
+      if (!value) return dateKey.slice(0, 7);
+      if (/^\d{4}-\d{2}/.test(value)) return value.slice(0, 7);
+      const parsed = new Date(value);
+      return Number.isNaN(parsed.getTime()) ? dateKey.slice(0, 7) : parsed.toISOString().slice(0, 7);
+    }
+
+    function availableMonths() {
+      const months = new Set([monthKey(dateKey)]);
+      state.transactions.forEach((tx) => months.add(monthKey(tx.date || tx.createdAt)));
+      return [...months].sort().reverse();
+    }
+
+    function monthLabel(value) {
+      const [year, month] = value.split("-");
+      return `${year}/${month}`;
+    }
+
+    function memberByName(name) {
+      const clean = cleanPersonName(name);
+      return state.members.find((member) => cleanPersonName(member.name) === clean);
+    }
+
+    function cleanPersonName(name) {
+      return fixKnownOcrName(String(name || "").replace(/\s*\(您\)\s*/g, "").trim()).toLowerCase();
+    }
+
+    function fixKnownOcrName(name) {
+      const compact = String(name || "").replace(/[^A-Za-z0-9\u3400-\u9fff]/g, "").toUpperCase();
+      const known = {
+        BEE: "韋瑩"
+      };
+      return known[compact] || name;
+    }
+
+    function cleanDrinkName(name) {
+      const normalized = String(name || "")
+        .normalize("NFKC")
+        .replace(/[\u00a0\u1680\u180e\u2000-\u200d\u2028\u2029\u202f\u205f\u3000\ufeff]/g, " ")
+        .replace(/\s+/g, " ")
+        .replace(/(^|[\s\[\]【】〔〕「」『』])(?:上|工|士|土|l|I|1)\s+(?=[\u3400-\u9fff])/i, "$1")
+        .replace(/([\u3400-\u9fff])\s+(?=[\u3400-\u9fff])/g, "$1")
+        .replace(/\s+([烏龍|奶昔|鮮奶|春茶|綠茶|紅茶|青茶|珍奶])/g, "$1")
+        .replace(/侗龍/g, "烏龍")
+        .replace(/島龍/g, "烏龍")
+        .replace(/烏籠/g, "烏龍")
+        .replace(/菜莉/g, "茉莉")
+        .replace(/^[\[\]【】〔〕「」『』\s]+|[\[\]【】〔〕「」『』\s]+$/g, "")
+        .trim();
+      return fixKnownOcrDrink(normalized);
+    }
+
+    function fixKnownOcrDrink(name) {
+      const compact = String(name || "").replace(/[^A-Za-z0-9\u3400-\u9fff]/g, "").toUpperCase();
+      const known = {
+        ERFRHE: "香橙春烏龍",
+        EEEGE: "香橙春烏龍",
+        HEEEE: "甘蔗春烏龍"
+      };
+      return known[compact] || name;
+    }
+
+    function preprocessImageForOcr(file) {
+      return new Promise((resolve, reject) => {
+        const image = new Image();
+        image.onload = () => {
+          const scale = Math.min(3, Math.max(2, Math.round(1800 / Math.max(image.width, image.height))));
+          const canvas = document.createElement("canvas");
+          canvas.width = image.width * scale;
+          canvas.height = image.height * scale;
+          const ctx = canvas.getContext("2d", { willReadFrequently: true });
+          ctx.imageSmoothingEnabled = false;
+          ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+          const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+          const data = imageData.data;
+          let total = 0;
+          for (let index = 0; index < data.length; index += 4) {
+            total += (data[index] + data[index + 1] + data[index + 2]) / 3;
+          }
+          const darkBackground = total / (data.length / 4) < 128;
+          for (let index = 0; index < data.length; index += 4) {
+            const gray = (data[index] * .299) + (data[index + 1] * .587) + (data[index + 2] * .114);
+            const value = darkBackground ? 255 - gray : gray;
+            const contrast = value < 135 ? 0 : 255;
+            data[index] = contrast;
+            data[index + 1] = contrast;
+            data[index + 2] = contrast;
+          }
+          ctx.putImageData(imageData, 0, 0);
+          canvas.toBlob((blob) => {
+            URL.revokeObjectURL(image.src);
+            blob ? resolve(blob) : reject(new Error("image preprocessing failed"));
+          }, "image/png");
+        };
+        image.onerror = reject;
+        image.src = URL.createObjectURL(file);
+      });
+    }
+
+    function extraFor(index, count, extraTotal) {
+      if (!count) return 0;
+      const baseExtra = Math.trunc(extraTotal / count);
+      const remainder = extraTotal - (baseExtra * count);
+      return baseExtra + (index < Math.abs(remainder) ? Math.sign(remainder) : 0);
+    }
+
+    function parseBulkOrders() {
+      const lines = els.bulkText.value.split(/\n+/).map((line) => line.trim()).filter(Boolean);
+      const extraTotal = amountFrom(els.bulkExtraTotal);
+      return lines.map((line, index) => {
+        const extra = extraFor(index, lines.length, extraTotal);
+        const parts = line.includes(",")
+          ? line.split(",").map((part) => part.trim()).filter(Boolean)
+          : line.split(/\s+/).map((part) => part.trim()).filter(Boolean);
+        const amountText = parts.pop();
+        const name = parts.shift() || "";
+        const baseAmount = parseMoneyValue(amountText);
+        const drink = cleanDrinkName(parts.join(" "));
+        const member = memberByName(name);
+        const errors = [];
+        if (!member) errors.push(`找不到 ${name || "姓名"}`);
+        if (!drink) errors.push("缺飲料");
+        if (!baseAmount || baseAmount <= 0) errors.push("缺價格");
+        if (isSuspiciousDrinkAmount(baseAmount)) errors.push(`價格像是讀錯：${baseAmount}`);
+        if (baseAmount + extra <= 0) errors.push("折扣後金額要大於 0");
+        return { line, member, name, drink, baseAmount, extra, errors };
+      });
+    }
+
+    function renderBulkPreview() {
+      const orders = parseBulkOrders();
+      if (!els.bulkText.value.trim()) {
+        els.bulkPreview.innerHTML = "";
+        return;
+      }
+      els.bulkPreview.innerHTML = orders.map((order) => {
+        const total = order.baseAmount + order.extra;
+        const bad = order.errors.length > 0;
+        const extraText = order.extra ? `，分攤 ${order.extra > 0 ? "+" : ""}${money.format(order.extra)}` : "";
+        return `
+          <div class="preview-row ${bad ? "bad" : ""}">
+            <div class="preview-main">${bad ? escapeHtml(order.errors.join("、")) : `<strong>${escapeHtml(order.member.name)}</strong> ${escapeHtml(order.drink)}${extraText}`}</div>
+            <div class="money">${bad ? "-" : money.format(total)}</div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function normalizeOcrText(text) {
+      const fullWidthDigits = "０１２３４５６７８９";
+      const lines = text
+        .replace(/[０-９]/g, (char) => String(fullWidthDigits.indexOf(char)))
+        .replace(/[＄﹩]/g, "$")
+        .split(/\n+/)
+        .map((line) => line.replace(/[|｜]/g, " ").replace(/\s+/g, " ").trim())
+        .filter(Boolean);
+      const orderLines = lines
+        .map((line) => {
+          const cleaned = line.replace(/[NTD$元]/gi, " ").replace(/\s+/g, " ").trim();
+          const match = cleaned.match(/^(.+?)\s+(.+?)\s+(-?\d+)$/);
+          if (match) return `${match[1]} ${match[2]} ${match[3]}`;
+          return cleaned;
+        })
+        .filter((line) => /-?\d+$/.test(line));
+      return orderLines.length ? orderLines.join("\n") : lines.join("\n");
+    }
+
+    function extractImageOrders(text) {
+      const fullWidthDigits = "０１２３４５６７８９";
+      const lines = text
+        .replace(/[０-９]/g, (char) => String(fullWidthDigits.indexOf(char)))
+        .replace(/[＄﹩]/g, "$")
+        .split(/\n+/)
+        .map((line) => line.replace(/[|｜]/g, " ").replace(/\s+/g, " ").trim())
+        .filter(Boolean);
+      const orders = [];
+      let currentName = "";
+      let pendingDrink = "";
+      let pendingPrice = 0;
+      const commitPending = (name = currentName) => {
+        const drink = cleanDrinkName(pendingDrink);
+        const baseAmount = parseMoneyValue(pendingPrice);
+        if (!drink || !baseAmount || baseAmount <= 0) return false;
+        const detectedName = fixKnownOcrName(name || currentName);
+        const member = memberByName(detectedName);
+        orders.push({
+          detectedName,
+          memberId: member ? member.id : "",
+          drink,
+          baseAmount
+        });
+        pendingDrink = "";
+        pendingPrice = 0;
+        return true;
+      };
+      lines.forEach((line) => {
+        const normalized = line
+          .replace(/NTD/gi, "$")
+          .replace(/元/g, "")
+          .replace(/^[@◎●○•]\s*/, "");
+        const buyerMatch = normalized.match(/訂購\s*人\s*姓名\s*[:：]\s*(.+)$/);
+        if (buyerMatch) {
+          const buyer = fixKnownOcrName(buyerMatch[1].trim());
+          if (pendingDrink) commitPending(buyer);
+          currentName = buyer;
+          if (orders.length && !orders[orders.length - 1].detectedName) {
+            orders[orders.length - 1].detectedName = buyer;
+          }
+          return;
+        }
+        const headerMatch = normalized.match(/^(?:\d+\s+)?(.+?)\s+\$?\s*(\d+(?:\.\d{1,2})?)\s*\/\s*\d+\s*份?$/);
+        if (headerMatch && !/[\/／]/.test(headerMatch[1])) {
+          if (pendingDrink) commitPending();
+          currentName = fixKnownOcrName(headerMatch[1].trim());
+          pendingPrice = parseMoneyValue(headerMatch[2]);
+          return;
+        }
+        const detailMatch = normalized.match(/\$?\s*(\d+(?:\.\d{1,2})?)\s*\/\s*\d+\s*份?/);
+        if (detailMatch && pendingDrink) {
+          pendingPrice = parseMoneyValue(detailMatch[1]);
+          commitPending();
+          return;
+        }
+        const looseDetailPrice = normalized.match(/\$?\s*(\d+(?:\.\d{1,2})?)\s*(?:\/|份)/);
+        if (looseDetailPrice && pendingDrink) {
+          pendingPrice = parseMoneyValue(looseDetailPrice[1]);
+          commitPending();
+          return;
+        }
+        const isOptionPrice = /\(\s*\$?\s*\d+(?:\.\d{1,2})?\s*\)/.test(normalized);
+        const priceMatch = normalized.match(/^(.*?)\s+\$?\s*(\d+(?:\.\d{1,2})?)$/);
+        if (priceMatch && !isOptionPrice) {
+          const drink = cleanDrinkName(priceMatch[1].replace(/^\d+\s+/, ""));
+          const baseAmount = parseMoneyValue(priceMatch[2]);
+          if (drink && baseAmount > 0 && !/^\d+$/.test(drink)) {
+            const member = memberByName(currentName);
+            orders.push({
+              detectedName: currentName,
+              memberId: member ? member.id : "",
+              drink,
+              baseAmount
+            });
+          }
+          return;
+        }
+        if (/^\d+$/.test(normalized)) return;
+        if (/[,$]\s*\d/.test(normalized)) return;
+        if (/(中杯|大杯|微糖|無糖|少糖|去冰|微冰|少冰|常溫|珍珠|茶凍|推薦|清爽|甜感)/.test(normalized)) return;
+        if (/^[LMXS]\s*$/i.test(normalized)) return;
+        if (/收款|訂購|姓名|份/.test(normalized)) return;
+        if (/[\u3400-\u9fff]/.test(normalized) && !/[\/／$]/.test(normalized)) {
+          pendingDrink = normalized;
+          return;
+        }
+        currentName = fixKnownOcrName(normalized);
+      });
+      if (pendingDrink) commitPending();
+      return orders;
+    }
+
+    function renderImageOrders() {
+      if (!stagedImageOrders.length) {
+        els.imageOrders.classList.remove("show");
+        els.imageOrders.innerHTML = "";
+        return;
+      }
+      const memberOptions = [`<option value="">選人名</option>`]
+        .concat(state.members.map((member) => `<option value="${member.id}">${escapeHtml(member.name)}</option>`))
+        .join("");
+      els.imageOrders.classList.add("show");
+      els.imageOrders.innerHTML = `
+        <div class="hint">圖片解析結果：先選人名，也可以直接改飲料或價格。</div>
+        ${stagedImageOrders.map((order, index) => `
+          <div class="assign-row">
+            <select data-assign-index="${index}" data-assign-field="memberId">${memberOptions}</select>
+            <input data-assign-index="${index}" data-assign-field="drink" value="${escapeHtml(cleanDrinkName(order.drink))}" aria-label="飲料">
+            <input data-assign-index="${index}" data-assign-field="baseAmount" type="number" min="1" max="250" step="1" value="${order.baseAmount}" aria-label="價格">
+            <div class="hint">偵測姓名：${escapeHtml(order.detectedName || "未偵測")}</div>
+          </div>
+        `).join("")}
+        <div class="assign-actions">
+          <button class="btn secondary" id="clearImageOrdersBtn" type="button">清掉解析結果</button>
+          <button class="btn warn" id="commitImageOrdersBtn" type="button">- 對好人名後扣款</button>
+        </div>
+      `;
+      stagedImageOrders.forEach((order, index) => {
+        const select = els.imageOrders.querySelector(`select[data-assign-index="${index}"]`);
+        if (select) select.value = order.memberId || "";
+      });
+    }
+
+    async function parseImageFile(file) {
+      if (!file || !file.type.startsWith("image/")) return;
+      if (!window.Tesseract) {
+        toast("圖片解析套件還沒載入，先改貼文字");
+        els.ocrStatus.textContent = "OCR 套件載入失敗，請確認網路後重開這個檔案。";
+        return;
+      }
+      els.imagePreview.src = URL.createObjectURL(file);
+      els.imagePreview.classList.add("show");
+      els.ocrStatus.textContent = "圖片辨識中...";
+      els.imagePickBtn.disabled = true;
+      try {
+        const result = await Tesseract.recognize(file, "chi_tra+eng", {
+          tessedit_pageseg_mode: "6",
+          preserve_interword_spaces: "1",
+          logger: (message) => {
+            if (message.status === "recognizing text") {
+              els.ocrStatus.textContent = `圖片辨識中 ${Math.round(message.progress * 100)}%`;
+            }
+          }
+        });
+        const rawText = result.data.text || "";
+        stagedImageOrders = extractImageOrders(rawText);
+        if (stagedImageOrders.length) {
+          renderImageOrders();
+          els.ocrStatus.textContent = `已解析 ${stagedImageOrders.length} 筆，請先對人名。`;
+          toast(`已解析 ${stagedImageOrders.length} 筆`);
+        } else {
+          const parsed = normalizeOcrText(rawText);
+          els.bulkText.value = parsed;
+          renderBulkPreview();
+          els.ocrStatus.textContent = parsed ? "已把圖片文字填到訂單清單，請先看預覽。" : "沒有辨識到可用文字。";
+          toast(parsed ? "圖片已解析" : "沒有辨識到文字");
+        }
+      } catch (error) {
+        els.ocrStatus.textContent = "圖片解析失敗，請改貼文字或換清楚一點的截圖。";
+        toast("圖片解析失敗");
+      } finally {
+        els.imagePickBtn.disabled = false;
+      }
+    }
+
+    function escapeHtml(value) {
+      return String(value).replace(/[&<>"']/g, (char) => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+      }[char]));
+    }
+
+    function removeMember(memberId) {
+      const member = state.members.find((item) => item.id === memberId);
+      if (!member) return;
+      if (!confirm(`刪除 ${member.name}？他的交易紀錄會保留在流水帳。`)) return;
+      rememberUndo(`刪除 ${member.name}`);
+      state.members = state.members.filter((item) => item.id !== memberId);
+      saveState();
+      render();
+      toast("成員已刪除");
+    }
+
+    window.removeMember = removeMember;
+
+    els.logMemberFilter.addEventListener("change", render);
+    els.logMonthFilter.addEventListener("change", render);
+    els.orderMember.addEventListener("change", fillRecentOrderForMember);
+    els.orderPaidNow.addEventListener("change", () => {
+      if (els.orderPaidNow.checked) fillRecentOrderForMember();
+      updateOrderButtonMode();
+    });
+
+    function fillRecentOrderForMember() {
+      const order = latestUnpaidOrder(els.orderMember.value);
+      if (!order) return;
+      els.orderItem.value = order.note || "";
+      els.orderAmount.value = order.baseAmount || orderCost(order);
+      els.orderExtra.value = order.extra || "";
+      if (order.source) els.orderSource.value = order.source;
+    }
+
+    function updateOrderButtonMode() {
+      els.orderSubmitBtn.textContent = els.orderPaidNow.checked ? "確認現付" : "- 扣飲料錢";
+    }
+
+    els.memberForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const name = els.memberName.value.trim();
+      const initial = amountFrom(els.memberInitial);
+      if (!name) return;
+      if (state.members.some((member) => member.name === name)) {
+        toast("這個人已經在名單裡");
+        return;
+      }
+      rememberUndo(`加入 ${name}`);
+      const member = { id: id(), name };
+      state.members.push(member);
+      if (initial > 0) {
+        state.transactions.push({
+          id: id(),
+          memberId: member.id,
+          type: "deposit",
+          amount: initial,
+          note: "初始預收金",
+          date: dateKey,
+          createdAt: new Date().toISOString()
+        });
+      }
+      saveState();
+      els.memberForm.reset();
+      render();
+      toast("已加入名單");
+    });
+
+    els.depositForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const amount = amountFrom(els.depositAmount);
+      if (amount <= 0) return;
+      const member = state.members.find((item) => item.id === els.depositMember.value);
+      rememberUndo(`預收 ${member ? member.name : "同事"} ${money.format(amount)}`);
+      addTransaction({
+        memberId: els.depositMember.value,
+        type: "deposit",
+        amount,
+        note: els.depositNote.value.trim() || "補預收金"
+      });
+      els.depositForm.reset();
+      toast("預收金已更新");
+    });
+
+    els.orderForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const baseAmount = amountFrom(els.orderAmount);
+      const extra = amountFrom(els.orderExtra);
+      const amount = baseAmount + extra;
+      const item = els.orderItem.value.trim();
+      const createdAt = new Date().toISOString();
+      const paidNow = els.orderPaidNow.checked;
+      if (baseAmount <= 0 || amount <= 0 || !item) return;
+      if (isSuspiciousDrinkAmount(baseAmount)) {
+        toast(`價格 ${baseAmount} 看起來像填錯`);
+        return;
+      }
+      if (paidNow) {
+        const existing = findOrderToMarkPaid(els.orderMember.value, item, amount);
+        if (!existing) {
+          toast("找不到最近未現付訂單");
+          return;
+        }
+        rememberUndo(`確認現付 ${item}`);
+        existing.paidNow = true;
+        existing.amount = 0;
+        existing.baseAmount = existing.baseAmount || baseAmount;
+        existing.extra = Number.isFinite(existing.extra) ? existing.extra : extra;
+        existing.source = existing.source || els.orderSource.value;
+        existing.note = existing.note || item;
+        existing.paidAt = createdAt;
+        saveState();
+        render();
+        els.orderPaidNow.checked = true;
+        updateOrderButtonMode();
+        fillRecentOrderForMember();
+        toast("已標記現付");
+        return;
+      }
+      rememberUndo(`扣款 ${item}`);
+      state.transactions.push({
+        id: id(),
+        memberId: els.orderMember.value,
+        type: "order",
+        amount: -amount,
+        baseAmount,
+        extra,
+        paidNow: false,
+        source: els.orderSource.value,
+        note: item,
+        date: dateKey,
+        createdAt
+      });
+      saveState();
+      render();
+      els.orderItem.value = "";
+      els.orderAmount.value = "";
+      els.orderExtra.value = "";
+      els.orderPaidNow.checked = true;
+      updateOrderButtonMode();
+      els.orderItem.focus();
+      toast("已扣飲料錢");
+    });
+
+    els.bulkText.addEventListener("input", renderBulkPreview);
+    els.bulkExtraTotal.addEventListener("input", renderBulkPreview);
+
+    els.imagePickBtn.addEventListener("click", () => els.imageInput.click());
+    els.imageInput.addEventListener("change", () => parseImageFile(els.imageInput.files[0]));
+
+    els.imageDrop.addEventListener("dragover", (event) => {
+      event.preventDefault();
+      els.imageDrop.classList.add("dragging");
+    });
+
+    els.imageDrop.addEventListener("dragleave", () => {
+      els.imageDrop.classList.remove("dragging");
+    });
+
+    els.imageDrop.addEventListener("drop", (event) => {
+      event.preventDefault();
+      els.imageDrop.classList.remove("dragging");
+      parseImageFile(event.dataTransfer.files[0]);
+    });
+
+    document.addEventListener("paste", (event) => {
+      const file = [...event.clipboardData.files].find((item) => item.type.startsWith("image/"));
+      if (!file) return;
+      event.preventDefault();
+      parseImageFile(file);
+    });
+
+    els.imageOrders.addEventListener("input", (event) => {
+      const index = Number(event.target.dataset.assignIndex);
+      const field = event.target.dataset.assignField;
+      if (!Number.isInteger(index) || !field || !stagedImageOrders[index]) return;
+      stagedImageOrders[index][field] = field === "baseAmount"
+        ? Math.round(Number(event.target.value || 0))
+        : cleanDrinkName(event.target.value);
+      if (field === "drink") event.target.value = stagedImageOrders[index][field];
+    });
+
+    els.imageOrders.addEventListener("change", (event) => {
+      const index = Number(event.target.dataset.assignIndex);
+      const field = event.target.dataset.assignField;
+      if (!Number.isInteger(index) || !field || !stagedImageOrders[index]) return;
+      stagedImageOrders[index][field] = field === "baseAmount"
+        ? parseMoneyValue(event.target.value)
+        : event.target.value;
+    });
+
+    els.imageOrders.addEventListener("click", (event) => {
+      if (event.target.id === "clearImageOrdersBtn") {
+        stagedImageOrders = [];
+        renderImageOrders();
+        els.ocrStatus.textContent = "解析結果已清掉，可以重新貼圖。";
+        return;
+      }
+      if (event.target.id !== "commitImageOrdersBtn") return;
+      const invalid = stagedImageOrders.filter((order) => (
+        !order.memberId ||
+        !order.drink.trim() ||
+        !order.baseAmount ||
+        order.baseAmount <= 0 ||
+        isSuspiciousDrinkAmount(order.baseAmount)
+      ));
+      if (invalid.length) {
+        toast(`還有 ${invalid.length} 筆人名或價格要修`);
+        return;
+      }
+      rememberUndo(`圖片扣款 ${stagedImageOrders.length} 筆`);
+      const extraTotal = amountFrom(els.bulkExtraTotal);
+      const createdAt = new Date().toISOString();
+      stagedImageOrders.forEach((order, index) => {
+        const baseAmount = parseMoneyValue(order.baseAmount);
+        const extra = extraFor(index, stagedImageOrders.length, extraTotal);
+        state.transactions.push({
+          id: id(),
+          memberId: order.memberId,
+          type: "order",
+          amount: -(baseAmount + extra),
+          baseAmount,
+          extra,
+          source: els.bulkSource.value,
+          note: cleanDrinkName(order.drink),
+          date: dateKey,
+          createdAt
+        });
+      });
+      stagedImageOrders = [];
+      saveState();
+      render();
+      els.ocrStatus.textContent = "已扣款完成。";
+      toast("圖片訂單已扣款");
+    });
+
+    els.bulkForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const orders = parseBulkOrders();
+      if (!orders.length) return;
+      const invalid = orders.filter((order) => order.errors.length);
+      if (invalid.length) {
+        renderBulkPreview();
+        toast(`有 ${invalid.length} 行要先修正`);
+        return;
+      }
+      rememberUndo(`整批扣款 ${orders.length} 筆`);
+      const createdAt = new Date().toISOString();
+      orders.forEach((order) => {
+        state.transactions.push({
+          id: id(),
+          memberId: order.member.id,
+          type: "order",
+          amount: -(order.baseAmount + order.extra),
+          baseAmount: order.baseAmount,
+          extra: order.extra,
+          source: els.bulkSource.value,
+          note: cleanDrinkName(order.drink),
+          date: dateKey,
+          createdAt
+        });
+      });
+      saveState();
+      els.bulkForm.reset();
+      els.bulkPreview.innerHTML = "";
+      render();
+      toast(`已整批扣 ${orders.length} 筆`);
+    });
+
+    els.exportBtn.addEventListener("click", () => {
+      const rows = [["日期", "時間", "姓名", "類型", "訂購方式", "飲料原價", "外送分攤折扣", "金額", "備註", "目前餘額"]];
+      state.transactions.forEach((tx) => {
+        const member = state.members.find((item) => item.id === tx.memberId);
+        rows.push([
+          tx.date,
+          new Date(tx.createdAt).toLocaleTimeString("zh-TW", { hour: "2-digit", minute: "2-digit" }),
+          member ? member.name : "已刪除",
+          tx.type === "deposit" ? "預收" : "扣款",
+          tx.source || "",
+          tx.baseAmount || "",
+          tx.extra || "",
+          tx.amount,
+          tx.note || "",
+          member ? memberBalance(member.id) : ""
+        ]);
+      });
+      const csv = rows.map((row) => row.map(csvCell).join(",")).join("\n");
+      const blob = new Blob(["\ufeff" + csv], { type: "text/csv;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `drink-ledger-${dateKey}.csv`;
+      link.click();
+      URL.revokeObjectURL(url);
+      toast("CSV 已匯出");
+    });
+
+    function csvCell(value) {
+      return `"${String(value).replace(/"/g, '""')}"`;
+    }
+
+    els.sampleBtn.addEventListener("click", () => {
+      if (state.members.length > 0 && !confirm("放入範例會加到目前資料後面，確定？")) return;
+      rememberUndo("放入範例");
+      const people = [
+        { name: "小美", deposit: 500, drink: "紅茶拿鐵微糖", price: 65, source: "Uber Eats", extra: 8 },
+        { name: "阿傑", deposit: 300, drink: "青茶無糖", price: 35, source: "手動代訂", extra: 0 },
+        { name: "Ivy", deposit: 0, drink: "珍珠奶茶", price: 70, source: "Uber Eats", extra: 8 }
+      ];
+      people.forEach((person) => {
+        const member = { id: id(), name: person.name };
+        state.members.push(member);
+        if (person.deposit) {
+          state.transactions.push({ id: id(), memberId: member.id, type: "deposit", amount: person.deposit, note: "範例預收", date: dateKey, createdAt: new Date().toISOString() });
+        }
+        state.transactions.push({
+          id: id(),
+          memberId: member.id,
+          type: "order",
+          amount: -(person.price + person.extra),
+          baseAmount: person.price,
+          extra: person.extra,
+          source: person.source,
+          note: person.drink,
+          date: dateKey,
+          createdAt: new Date().toISOString()
+        });
+      });
+      saveState();
+      render();
+      toast("範例已放入");
+    });
+
+    els.clearLogBtn.addEventListener("click", () => {
+      if (!state.transactions.length) return;
+      if (!confirm("清空所有流水帳？成員名單會留下，但餘額會歸零。")) return;
+      rememberUndo("清空流水帳");
+      state.transactions = [];
+      saveState();
+      render();
+      toast("流水帳已清空");
+    });
+
+    els.undoBtn.addEventListener("click", undoLast);
+
+    els.undoTodayBtn.addEventListener("click", () => {
+      const todayCount = state.transactions.filter(isTodayTransaction).length;
+      if (!todayCount) return;
+      if (!confirm(`清掉今天 ${todayCount} 筆紀錄？成員名單會保留，也可以再用「復原上一筆」救回來。`)) return;
+      rememberUndo(`清掉今天 ${todayCount} 筆`);
+      state.transactions = state.transactions.filter((tx) => !isTodayTransaction(tx));
+      saveState();
+      render();
+      toast(`已清掉今天 ${todayCount} 筆`);
+    });
+
+    render();
+  </script>
+</body>
+</html>
