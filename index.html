@@ -643,6 +643,7 @@
       margin-top: 24px;
     }
     .ai-intro strong { color: var(--ink); }
+    .nobr { white-space: nowrap; }
 
     .ai-grid {
       display: grid;
@@ -866,6 +867,58 @@
     .tech-chip:hover { border-color: var(--accent); color: var(--accent); }
 
 
+    /* ===== SERVICES ===== */
+    .svc-intro {
+      font-size: 17px;
+      color: var(--ink-60);
+      line-height: 1.8;
+      max-width: 720px;
+      margin-top: 24px;
+    }
+    .svc-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 48px;
+    }
+    .svc-card-wide { grid-column: 1 / -1; }
+    .svc-card {
+      background: var(--bg-2);
+      border: 1px solid var(--ink-10);
+      border-radius: 14px;
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+    }
+    .svc-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent-fade);
+      box-shadow: 0 12px 32px rgba(28,25,23,0.07);
+    }
+    .svc-num {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+    }
+    .svc-title {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      line-height: 1.3;
+      color: var(--ink);
+    }
+    .svc-desc {
+      font-size: 14px;
+      color: var(--ink-60);
+      line-height: 1.7;
+    }
+    .svc-desc strong { color: var(--ink); }
+    .svc-cta { margin-top: 36px; }
+
     /* ===== CONTACT ===== */
     #contact { text-align: center; padding-bottom: calc(var(--py) + 24px); }
 
@@ -943,9 +996,9 @@
       .hero-content, .hero-photo-col, .hero-stats { animation: none; }
       .js-reveal [data-reveal] { opacity: 1; transform: none; transition: none; }
       .nav-cta:hover, .btn-dark:hover, .btn-outline:hover,
-      .social-link:hover, .skill-group:hover, .ai-card:hover { transform: none; }
+      .social-link:hover, .skill-group:hover, .ai-card:hover, .svc-card:hover { transform: none; }
       .nav-links a::after, .lang-btn, .nav-cta, .btn, .tag, .tl-tag, .tech-chip,
-      .skill-group, .ai-card, .ai-more, .contact-email, .social-link, .hamburger span,
+      .skill-group, .ai-card, .svc-card, .ai-more, .contact-email, .social-link, .hamburger span,
       .tl-item::before, .gogo-num, .nav { transition: none; }
     }
 
@@ -954,6 +1007,7 @@
       .hero-grid { grid-template-columns: 1fr 320px; gap: 48px; }
       .skills-grid { grid-template-columns: repeat(2, 1fr); }
       .ai-grid { grid-template-columns: 1fr; }
+      .svc-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 768px) {
@@ -1014,6 +1068,7 @@
         <li><a href="#experience"><span lang="zh">經歷</span><span lang="en">Experience</span></a></li>
         <li><a href="#ai"><span lang="zh">AI 實作</span><span lang="en">AI in Practice</span></a></li>
         <li><a href="#gogo">GoGo</a></li>
+        <li><a href="#services"><span lang="zh">服務</span><span lang="en">Services</span></a></li>
       </ul>
       <div class="nav-right">
         <button class="lang-btn" id="lang-btn" aria-label="Switch to English">
@@ -1035,6 +1090,7 @@
       <a href="#experience"><span lang="zh">經歷</span><span lang="en">Experience</span></a>
       <a href="#ai"><span lang="zh">AI 實作</span><span lang="en">AI in Practice</span></a>
       <a href="#gogo">GoGo</a>
+      <a href="#services"><span lang="zh">服務</span><span lang="en">Services</span></a>
       <a href="#contact"><span lang="zh">聯絡我</span><span lang="en">Get in touch</span></a>
     </div>
   </header>
@@ -1446,7 +1502,7 @@
       <h2 class="heading" lang="zh">不只談 AI，我每天在用自己做的 agent</h2>
       <h2 class="heading" lang="en">Not just talking about AI — I run my own agents daily</h2>
       <p class="ai-intro" lang="zh">
-        具備技術底子的 PM，親手打造並每日使用 <strong>AI agent 系統</strong>。可擔任 AI 顧問，協助團隊評估與導入 AI agent、自動化流程與治理機制。
+        具備技術底子的 PM，親手打造並每日使用 <strong class="nobr">AI agent 系統</strong>。可擔任 <span class="nobr">AI 顧問</span>，協助團隊<span class="nobr">評估與導入 AI agent</span>、<span class="nobr">自動化流程</span>與<span class="nobr">治理機制</span>。
       </p>
       <p class="ai-intro" lang="en">
         A PM with a technical foundation who builds — and uses every day — his own <strong>AI agent systems</strong>.
@@ -1480,18 +1536,18 @@
           </div>
         </article>
 
-        <!-- Guama voice bot -->
+        <!-- Discord voice Q&A bot -->
         <article class="ai-card">
           <div class="ai-card-head">
-            <h3 class="ai-card-title"><span lang="zh">呱馬 Discord 語音 bot</span><span lang="en">Guama — Discord Voice Bot</span></h3>
+            <h3 class="ai-card-title"><span lang="zh">Discord 語音問答 bot</span><span lang="en">Discord Voice Q&amp;A Bot</span></h3>
             <span class="tl-period"><span lang="zh">語音 bot</span><span lang="en">Voice bot</span></span>
           </div>
           <div class="ai-card-desc" lang="zh">
-            <p>在 Discord 語音頻道以<strong>喚醒詞</strong>觸發的問答機器人。本地 Whisper 語音辨識、edge-tts 語音合成（零 API 費），後端接 Claude 回答。</p>
+            <p>在 Discord 語音頻道以<strong>喚醒詞</strong>觸發的問答機器人，開放伺服器所有成員使用——語音頻道喚醒詞問答、文字頻道 @ 提及問答與聊天、白名單頻道自動接話。本地 Whisper 語音辨識、edge-tts 語音合成（零 API 費），後端接 Claude 回答。</p>
             <p>具 <strong>9 種可熱切換的人格模式</strong>、用量額度閘門，以 launchd 常駐並由 watchdog 自癒。</p>
           </div>
           <div class="ai-card-desc" lang="en">
-            <p>A <strong>wake-word</strong> triggered Q&amp;A bot for Discord voice channels. Local Whisper speech recognition and edge-tts speech synthesis (zero API cost), with Claude answering on the backend.</p>
+            <p>A <strong>wake-word</strong> triggered Q&amp;A bot for Discord voice channels, open to every member of the server — wake-word Q&amp;A in voice channels, @-mention Q&amp;A and chat in text channels, and auto-replies in whitelisted channels. Local Whisper speech recognition and edge-tts speech synthesis (zero API cost), with Claude answering on the backend.</p>
             <p><strong>Nine hot-swappable persona modes</strong>, a usage quota gate, and an always-on launchd service with watchdog self-healing.</p>
           </div>
           <div class="tl-tags">
@@ -1513,10 +1569,10 @@
             <div class="ai-tool">
               <div class="ai-tool-name">Fan Comment Scraper</div>
               <div class="ai-card-desc" lang="zh">
-                <p>Claude Code 工具，輸入產品關鍵字即自動爬取 12 個平台（PTT、Dcard、Mobile01、蝦皮、momo、PChome、YouTube、IG、Threads、FB、X 與品牌官網）的真實用戶留言，輸出含來源 URL 的 Excel，供市場情報使用。</p>
+                <p>Claude Code 工具，輸入產品關鍵字即自動爬取 6 個平台（PTT、Dcard、YouTube、Threads、Facebook 與品牌官網）的真實用戶留言，輸出含來源 URL 的 Excel，供市場情報使用。</p>
               </div>
               <div class="ai-card-desc" lang="en">
-                <p>A Claude Code tool that takes a product keyword and automatically collects real user comments from 12 platforms (PTT, Dcard, Mobile01, Shopee, momo, PChome, YouTube, IG, Threads, FB, X, and brand websites), exporting an Excel file with source URLs for market intelligence.</p>
+                <p>A Claude Code tool that takes a product keyword and automatically collects real user comments from 6 platforms (PTT, Dcard, YouTube, Threads, Facebook, and brand websites), exporting an Excel file with source URLs for market intelligence.</p>
               </div>
               <div class="tl-tags">
                 <span class="tl-tag">Claude Code skills</span>
@@ -1670,22 +1726,84 @@
     </div>
   </section>
 
+  <!-- ===== SERVICES ===== -->
+  <section id="services">
+    <div class="container">
+      <span class="label">
+        <span lang="zh">06 &mdash; 服務</span>
+        <span lang="en">06 &mdash; Services</span>
+      </span>
+      <h2 class="heading" lang="zh">接案與顧問合作</h2>
+      <h2 class="heading" lang="en">Freelance &amp; consulting</h2>
+      <p class="svc-intro" lang="zh">
+        可承接 AI 相關與數據／廣告技術類專案，遠端或台北皆可。
+      </p>
+      <p class="svc-intro" lang="en">
+        Available for AI, data, and ad-tech projects — remote, or on-site in Taipei.
+      </p>
+
+      <div class="svc-grid">
+
+        <article class="svc-card svc-card-wide">
+          <div class="svc-num">01</div>
+          <h3 class="svc-title"><span lang="zh">AI agent 與自動化流程導入顧問</span><span lang="en">AI Agent &amp; Automation Consulting</span></h3>
+          <p class="svc-desc" lang="zh">評估與導入 <strong>Claude Code 多 agent 團隊</strong>、MCP、排程 pipeline 與治理護欄。這套 AI agent 系統我親手打造並每日使用。</p>
+          <p class="svc-desc" lang="en">Evaluate and roll out <strong>Claude Code multi-agent teams</strong>, MCP, scheduled pipelines, and governance guardrails — the same kind of AI agent system I built myself and use every day.</p>
+        </article>
+
+        <article class="svc-card">
+          <div class="svc-num">02</div>
+          <h3 class="svc-title"><span lang="zh">AI 原型／內部工具快速打造</span><span lang="en">Rapid AI Prototypes &amp; Internal Tools</span></h3>
+          <p class="svc-desc" lang="zh">用 Claude 等 AI 工具，把想法做成能在真實環境驗證的 <strong>POC 與內部工具</strong>。PM 期間先驗證再投入 RD；FAE 期間做過 CSV 轉檔工具與 shell／Robot Framework 自動化機器人；近期則有 Discord bot 與各種小工具。</p>
+          <p class="svc-desc" lang="en">Turn an idea into a <strong>POC or internal tool</strong> you can validate in a real environment, using Claude and other AI tools. As a PM I validate before committing RD; as an FAE I built CSV conversion tools and shell / Robot Framework automation bots; more recently, Discord bots and small utilities.</p>
+        </article>
+
+        <article class="svc-card">
+          <div class="svc-num">03</div>
+          <h3 class="svc-title"><span lang="zh">數據管線與儀表板</span><span lang="en">Data Pipelines &amp; Dashboards</span></h3>
+          <p class="svc-desc" lang="zh"><strong>GA4 導入</strong>（曾為客戶建置 100 個以上自訂事件、10 份以上 Looker Studio 報表）、BigQuery／GCP 資料管線，以及 Google Ads、Meta、LINE、TTD、DV360、TikTok 等媒體與社群 API 整合。</p>
+          <p class="svc-desc" lang="en"><strong>GA4 implementation</strong> (100+ custom events and 10+ Looker Studio reports built for clients), BigQuery / GCP data pipelines, and media &amp; social API integrations — Google Ads, Meta, LINE, TTD, DV360, TikTok.</p>
+        </article>
+
+        <article class="svc-card">
+          <div class="svc-num">04</div>
+          <h3 class="svc-title"><span lang="zh">AdTech 顧問</span><span lang="en">AdTech Consulting</span></h3>
+          <p class="svc-desc" lang="zh"><strong>SSP／DSP 運作</strong>、VAST／In-stream 影音廣告、事件追蹤框架設計，以及廣告版型與 SDK 串接。</p>
+          <p class="svc-desc" lang="en">How <strong>SSPs and DSPs</strong> work, VAST / In-stream video ads, event-tracking framework design, and ad template &amp; SDK integration.</p>
+        </article>
+
+        <article class="svc-card">
+          <div class="svc-num">05</div>
+          <h3 class="svc-title"><span lang="zh">網站與 LINE OA／小程式開發</span><span lang="en">Websites, LINE OA &amp; Mini-programs</span></h3>
+          <p class="svc-desc" lang="zh"><strong>官網開發</strong>（繁簡 i18n、GA4 導入）、LINE 官方帳號與微信小程式功能，以及 Google Maps API 整合。</p>
+          <p class="svc-desc" lang="en"><strong>Official websites</strong> (Traditional / Simplified Chinese i18n, GA4 setup), LINE Official Account and WeChat mini-program features, and Google Maps API integration.</p>
+        </article>
+
+      </div>
+
+      <a href="#contact" class="btn btn-dark svc-cta">
+        <span lang="zh">聊聊你的專案 →</span>
+        <span lang="en">Let's talk about your project →</span>
+      </a>
+    </div>
+  </section>
+
   <!-- ===== CONTACT ===== -->
   <section id="contact">
     <div class="container">
       <span class="label">
-        <span lang="zh">06 &mdash; 聯絡</span>
-        <span lang="en">06 &mdash; Contact</span>
+        <span lang="zh">07 &mdash; 聯絡</span>
+        <span lang="en">07 &mdash; Contact</span>
       </span>
       <h2 class="contact-heading" lang="zh">一起打造<br>好產品。</h2>
       <h2 class="contact-heading" lang="en">Let's build<br>something.</h2>
       <p class="contact-sub" lang="zh">
-        歡迎聊 PM 職缺、AdTech 與數據平台機會，<br>
-        或一起交流產品想法。
+        歡迎聊 PM 職缺、AdTech 與<span class="nobr">數據平台機會</span>、<br>
+        <span class="nobr">AI 接案</span>與<span class="nobr">顧問合作</span>，或一起交流產品想法。
       </p>
       <p class="contact-sub" lang="en">
         Open to PM roles, AdTech &amp; data platform opportunities,<br>
-        and collaboration on product ideas.
+        AI freelance &amp; consulting work, and collaboration on product ideas.
       </p>
       <a href="mailto:james1959032900@gmail.com" class="contact-email">
         james1959032900@gmail.com
