@@ -1557,7 +1557,6 @@
             <div class="gogo-title-row">
               <h2 class="gogo-display">GoGo</h2>
               <span class="tl-period"><span lang="zh">AI 旅遊規劃 App</span><span lang="en">AI travel-planning app</span></span>
-              <span class="tl-period"><span lang="zh">持續更新中</span><span lang="en">Actively maintained</span></span>
             </div>
             <div class="gogo-sub" lang="zh">&ldquo;靈感不再只是收藏，而是你的下一趟旅程&rdquo;</div>
             <div class="gogo-sub" lang="en">&ldquo;Turn inspiration into your next journey&rdquo;</div>
@@ -1674,13 +1673,16 @@
           <div class="ai-card-desc" lang="zh">
             <p>用 Claude Code 打造 <strong>24/7 常駐</strong>的個人 AI 團隊：一個 PM agent 拆解任務、派工、驗收，指揮 <strong>12 個專職 subagent</strong>；我在外面用 Discord 傳一句話，就能派它做事。</p>
             <p>自建任務看板、AI 自動維護的 Obsidian 知識庫、定時自動執行的 pipeline，並以 hooks 當治理護欄：agent 的說法要有 diff 或輸出當證據。</p>
+            <p>程式由 OpenAI Codex 實作、再由另一個模型做 code review 與 QA，一天可完成數十張工作單。</p>
           </div>
           <div class="ai-card-desc" lang="en">
             <p>A <strong>24/7 always-on</strong> personal AI team built on Claude Code: one PM agent breaks down tasks, delegates, and verifies, directing <strong>12 specialized subagents</strong>; from anywhere, one Discord message puts it to work.</p>
             <p>Self-built task board, an Obsidian knowledge base maintained by AI, pipelines that run on a schedule, and hooks as governance guardrails: whatever an agent claims has to be backed by a diff or actual output.</p>
+            <p>OpenAI Codex implements the code, then another model handles code review and QA, completing dozens of work items a day.</p>
           </div>
           <div class="tl-tags">
             <span class="tl-tag">Claude Code</span>
+            <span class="tl-tag">OpenAI Codex</span>
             <span class="tl-tag">MCP</span>
             <span class="tl-tag">Python / Flask</span>
             <span class="tl-tag">Bash</span>
@@ -1715,22 +1717,25 @@
         <!-- Discord voice Q&A bot -->
         <article class="ai-card">
           <div class="ai-card-head">
-            <h3 class="ai-card-title"><span lang="zh">Discord 語音問答 bot</span><span lang="en">Discord Voice Q&amp;A Bot</span></h3>
-            <span class="tl-period"><span lang="zh">語音 bot</span><span lang="en">Voice bot</span></span>
+            <h3 class="ai-card-title"><span lang="zh"><span class="nobr">Discord 社群 bot</span><span class="nobr">「呱馬」</span></span><span lang="en">Discord Community Bot “Guama”</span></h3>
+            <span class="tl-period"><span lang="zh">社群互動平台</span><span lang="en">Community platform</span></span>
           </div>
           <div class="ai-card-desc" lang="zh">
-            <p>在 Discord 語音頻道用<strong>喚醒詞</strong>就能問答的機器人，伺服器所有成員都能用，文字頻道 @ 它也會回、白名單頻道自動接話。</p>
-            <p>本地 Whisper 語音辨識＋edge-tts 語音合成（零 API 費）、Claude 回答，<strong>9 種人格隨時切換、不用重啟</strong>，24 小時常駐、掛掉自動重啟。</p>
+            <p><span class="nobr">語音頻道喚醒詞問答</span>、<span class="nobr">文字 @ 回覆</span>，<strong class="nobr">50 多個 slash command</strong>，<span class="nobr">整合呱幣虛擬貨幣經濟</span><span class="nobr">與帳本</span>；<span class="nobr">簽到、打工、釣魚</span>與<span class="nobr">多益／日檢分級</span>的<span class="nobr">英日文測驗</span>都能賺幣（<span class="nobr">英文 800 單字</span>、<span class="nobr">日文 1,000 單字</span>）。</p>
+            <p><span class="nobr">牌桌遊戲自動出圖</span>，搭配<span class="nobr">四位不同個性的 AI 荷官</span>；<span class="nobr">回合制文字 RPG</span>包含<span class="nobr">8 條職業線</span>、六轉與<span class="nobr">隨機詞綴裝備</span>，並提供<span class="nobr">可翻頁的 /說明書</span>。</p>
+            <p><span class="nobr">每個機率與經濟數值</span>都以<strong class="nobr">十萬次以上模擬</strong><span class="nobr">驗證才上線</span>。</p>
           </div>
           <div class="ai-card-desc" lang="en">
-            <p>A <strong>wake-word</strong> Q&amp;A bot for Discord voice channels, open to every member of the server; it also answers @-mentions in text channels and auto-replies in allowlisted channels.</p>
-            <p>Local Whisper speech recognition + edge-tts synthesis (zero API cost) with Claude answering, <strong>nine persona modes you can switch anytime without a restart</strong>, running 24/7 and restarting itself if it ever crashes.</p>
+            <p>Wake-word Q&amp;A in voice channels and text @-replies, <strong>50+ slash commands</strong>, and a Guabi virtual currency economy and ledger; earn coins through check-ins, work, fishing, and TOEIC/JLPT-graded quizzes (800 English words and 1,000 Japanese words).</p>
+            <p>Table games render automatically with four distinct AI dealer personalities; a turn-based text RPG offers eight class paths, six class advancements, and equipment with random affixes, with a paginated <span class="nobr">/說明書</span> manual.</p>
+            <p>Every probability and economic parameter is validated with <strong>over 100,000 simulation runs</strong> before release.</p>
           </div>
           <div class="tl-tags">
             <span class="tl-tag">Node.js</span>
             <span class="tl-tag">discord.js / @discordjs/voice</span>
             <span class="tl-tag">Whisper</span>
             <span class="tl-tag">edge-tts</span>
+            <span class="tl-tag">Simulation</span>
           </div>
         </article>
 
